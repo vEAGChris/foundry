@@ -8,6 +8,34 @@
   --font-size-xl: 1.25rem;
   --font-size-2xl: 1.5rem;
   --font-size-3xl: 1.875rem;
+
+  /* Logo */
+.product-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.product-logo {
+    width: auto;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.product-branding {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    margin: 0;
+}
+
+.product-description {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
   
   /* Layout */
   --line-height-tight: 1.2;
@@ -215,6 +243,7 @@ body.application-shell {
   overflow: auto;
   background: var(--bg-app);
   padding: var(--space-6);
+  padding-top: var(--space-5);
 }
 
 .workspace {
