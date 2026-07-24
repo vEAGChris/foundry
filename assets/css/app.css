@@ -1,5 +1,5 @@
 :root {
-  --font-family-sans: Arial, Helvetica, sans-serif;
+  --font-family-sans: "Inter", "Segoe UI" system-ui, sans-serif;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-md: 1rem;
