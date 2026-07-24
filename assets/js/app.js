@@ -41,6 +41,21 @@ function findById(items, id) {
 }
 
 /**
+ * Calculates development progress from the current ticket collection.
+ *
+ * @param {Array<object>} tickets The available tickets.
+ * @returns {{completedTickets: number, totalTickets: number, percentage: number}} Progress totals.
+ */
+function calculateDevelopmentProgress(tickets) {
+  const ticketList = Array.isArray(tickets) ? tickets : [];
+  const totalTickets = ticketList.length;
+  const completedTickets = ticketList.filter((ticket) => ticket.status === 'completed').length;
+  const percentage = totalTickets === 0 ? 0 : Math.round((completedTickets / totalTickets) * 100);
+
+  return { completedTickets, totalTickets, percentage };
+}
+
+/**
  * Resolves project references to their records so display values are derived
  * from one source of truth.
  *
@@ -53,6 +68,7 @@ function findById(items, id) {
 function createProjectModel(project, tickets, milestones, releases) {
   return {
     project,
+    developmentProgress: calculateDevelopmentProgress(tickets),
     activeTicket: findById(tickets, project.activeTicketId),
     currentMilestone: findById(milestones, project.currentMilestone),
     currentRelease: Array.isArray(releases)
@@ -84,7 +100,7 @@ function formatActiveTicket(ticket, ticketId) {
  * @returns {object} Values keyed by dashboard binding name.
  */
 function createDashboardValues(model) {
-  const { project, activeTicket } = model;
+  const { project, activeTicket, developmentProgress } = model;
 
   return {
     name: project.name,
@@ -92,6 +108,8 @@ function createDashboardValues(model) {
     version: project.version,
     currentSprint: project.currentSprint,
     currentTicket: formatActiveTicket(activeTicket, project.activeTicketId),
+    developmentProgressPercentage: `${developmentProgress.percentage}%`,
+    developmentProgressTickets: `${developmentProgress.completedTickets} / ${developmentProgress.totalTickets} completed tickets`,
   };
 }
 
@@ -128,6 +146,25 @@ function populateDashboardCards(values) {
 }
 
 /**
+ * Updates progress bar state for the reusable development progress card.
+ *
+ * @param {{completedTickets: number, totalTickets: number, percentage: number}} progress The calculated progress.
+ */
+function populateDevelopmentProgress(progress) {
+  document.querySelectorAll('[data-development-progress-bar]').forEach((progressBar) => {
+    const indicator = progressBar.querySelector('.development-progress__indicator');
+    const valueText = `${progress.completedTickets} of ${progress.totalTickets} tickets completed`;
+
+    progressBar.setAttribute('aria-valuenow', progress.percentage);
+    progressBar.setAttribute('aria-valuetext', `${valueText} (${progress.percentage}%)`);
+
+    if (indicator) {
+      indicator.style.inlineSize = `${progress.percentage}%`;
+    }
+  });
+}
+
+/**
  * Loads the project data and applies it to the existing dashboard.
  */
 async function loadProjectConfiguration() {
@@ -143,6 +180,7 @@ async function loadProjectConfiguration() {
 
     populateProjectBindings(values);
     populateDashboardCards(values);
+    populateDevelopmentProgress(model.developmentProgress);
   } catch (error) {
     // Leave the existing placeholders visible if the dashboard data is unavailable.
     console.error('VEAG Foundry dashboard data could not be loaded.', error);
