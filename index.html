@@ -32,15 +32,49 @@
 
     <main class="application-main">
       <section class="workspace" aria-label="Workspace">
-        <section class="dashboard-card">
-          <header class="dashboard-card__header">
-            Current Project
-          </header>
+        <div class="dashboard-grid">
+          <section class="dashboard-card">
+            <header class="dashboard-card__header">
+              Current Project
+            </header>
 
-          <div class="dashboard-card__body">
-            VEAG Ops Panel
-          </div>
-        </section>
+            <div 
+                class="dashboard-card__body"
+                data-bind="currentProject">
+            </div>  
+  
+          </section>
+
+          <section class="dashboard-card">
+            <header class="dashboard-card__header">
+              Version
+            </header>
+
+            <div class="dashboard-card__body">
+              Version placeholder
+            </div>
+          </section>
+
+          <section class="dashboard-card">
+            <header class="dashboard-card__header">
+              Sprint
+            </header>
+
+            <div class="dashboard-card__body">
+              Sprint placeholder
+            </div>
+          </section>
+
+          <section class="dashboard-card">
+            <header class="dashboard-card__header">
+              Current Ticket
+            </header>
+
+            <div class="dashboard-card__body">
+              Current ticket placeholder
+            </div>
+          </section>
+        </div>
       </section>
     </main>
 

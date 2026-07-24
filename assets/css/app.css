@@ -214,6 +214,7 @@ body.application-shell {
   min-block-size: 0;
   overflow: auto;
   background: var(--bg-app);
+  padding: var(--space-6);
 }
 
 .workspace {
@@ -221,6 +222,12 @@ body.application-shell {
   border-radius: var(--radius-lg);
   padding: var(--space-5);
   box-shadow: var(--shadow-card);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-4);
 }
 
 .dashboard-card {
