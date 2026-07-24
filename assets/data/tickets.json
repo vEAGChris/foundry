@@ -1,16 +1,18 @@
 [
-  {
-    "id": "FND-001",
-    "title": "Create Application Shell",
-    "status": "completed",
-    "priority": "high",
-    "milestone": "M0.4"
-  },
-  {
-    "id": "FND-002",
-    "title": "Rename workspace-container to workspace",
-    "status": "in-progress",
-    "priority": "low",
-    "milestone": "M0.4"
-  }
+    {
+        "id": "FND-001",
+        "title": "Create Application Shell",
+        "status": "completed",
+        "priority": "high",
+        "milestone": "M0.4",
+        "order": 1
+    },
+    {
+        "id": "FND-002",
+        "title": "Rename workspace-container",
+        "status": "completed",
+        "priority": "low",
+        "milestone": "M0.4",
+        "order": 2
+    }
 ]

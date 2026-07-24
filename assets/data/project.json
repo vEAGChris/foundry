@@ -2,17 +2,13 @@
   "name": "VEAG Foundry",
   "projectId": "FNDRY",
 
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "development",
 
-  "currentProject": "VEAG Foundry",
-
   "currentSprint": "Sprint 0",
+  "currentMilestone": "M0.6",
 
-  "currentMilestone": "M0.5",
-  
-  "currentTicket": "FND-003",
-  
-  "currentRelease": "v0.1.0"
+  "activeTicketId": "FND-010",
 
+  "currentRelease": "v0.2.0"
 }
