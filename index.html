@@ -7,8 +7,11 @@
   </head>
   <body class="application-shell">
     <header class="application-header">
-      <h1 class="product-title">VEAG Foundry</h1>
+      <h1 class="product-title" data-bind="applicationName">VEAG Foundry</h1>
+      <p class="application-version" data-bind="version">Version placeholder</p>
       <p class="current-project">Current project placeholder</p>
+      <p class="current-milestone" data-bind="currentMilestone">Current milestone placeholder</p>
+      <p class="current-ticket" data-bind="currentTicket">Current ticket placeholder</p>
       <div class="user-settings-placeholder">User/settings placeholder</div>
     </header>
 
@@ -33,5 +36,7 @@
     <footer class="application-footer">
       <div class="status-bar">Status bar placeholder</div>
     </footer>
+
+    <script src="assets/js/app.js" defer></script>
   </body>
 </html>
