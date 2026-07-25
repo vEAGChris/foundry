@@ -1,13 +1,15 @@
 import { loadTickets } from "../repositories/ticketRepository.js";
 
+import { createStatusBadge, createPriorityBadge } from "../components/badge.js";
+
 function createTicketRow(ticket) {
     return `
         <tr>
             <td>${ticket.order}</td>
             <td>${ticket.id}</td>
             <td>${ticket.title}</td>
-            <td>${ticket.status}</td>
-            <td>${ticket.priority}</td>
+            <td>${createStatusBadge(ticket.status)}</td>
+            <td>${createPriorityBadge(ticket.priority)}</td>
             <td>${ticket.milestone}</td>
         </tr>
     `;

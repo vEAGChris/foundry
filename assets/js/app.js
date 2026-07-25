@@ -2,6 +2,7 @@ import { loadMilestones } from "./repositories/milestoneRepository.js";
 import { loadTickets } from "./repositories/ticketRepository.js";
 import { loadReleases } from "./repositories/releaseRepository.js";
 import { loadProject } from "./repositories/projectRepository.js";
+import { renderDashboardView } from "./views/dashboardView.js";
 
 // Consider replacing DASHBOARD_CARD_BINDINGS with data-bind attributes on the cards in a future refactor.
 const DASHBOARD_CARD_BINDINGS = {
@@ -146,6 +147,7 @@ function populateDevelopmentProgress(progress) {
   });
 }
 
+document.getElementById("app").innerHTML = renderDashboardView();
 /**
  * Loads the project data and applies it to the existing dashboard.
  */
