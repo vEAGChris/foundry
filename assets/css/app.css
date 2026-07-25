@@ -1,3 +1,7 @@
+/* ==========================================================================
+   Design Tokens
+   ========================================================================== */
+
 :root {
   /* Fonts */
   --font-family-sans: "Inter", "Segoe UI", system-ui, sans-serif;
@@ -8,35 +12,7 @@
   --font-size-xl: 1.25rem;
   --font-size-2xl: 1.5rem;
   --font-size-3xl: 1.875rem;
-}
 
-  /* Logo */
-.product-brand {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-}
-
-.product-logo {
-    width: auto;
-    height: 40px;
-    flex-shrink: 0;
-}
-
-.product-branding {
-    display: flex;
-    flex-direction: column;
-}
-
-.product-title {
-    margin: 0;
-}
-
-.product-description {
-    margin: 0;
-    color: var(--text-secondary);
-    font-size: var(--font-size-sm);
-}
   
   /* Layout */
   --line-height-tight: 1.2;
@@ -124,11 +100,58 @@
   --transition-easing: ease;
 }
 
+/* ==========================================================================
+   Global Styles
+   ========================================================================== */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================================================================
+   Branding
+   ========================================================================== */
+.product-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.product-logo {
+    width: auto;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.product-branding {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.product-title {
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.product-description {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+/* ==========================================================================
+   Application Layout
+   ========================================================================== */
 
 body.application-shell {
   display: grid;
@@ -171,11 +194,6 @@ body.application-shell {
   font-size: var(--font-size-sm);
 }
 
-.product-title {
-  color: var(--text-primary);
-  font-size: var(--font-size-lg);
-  line-height: var(--line-height-tight);
-}
 
 .application-version,
 .current-project,
@@ -194,6 +212,36 @@ body.application-shell {
   background: var(--bg-panel);
   z-index: var(--z-index-base);
 }
+
+.application-main {
+  grid-area: main;
+  min-inline-size: 0;
+  min-block-size: 0;
+  overflow: auto;
+  background: var(--bg-app);
+  padding: var(--space-5);
+}
+
+.workspace {
+  background: transparent;
+  border-radius: var(--radius-lg);
+  padding: 0;
+  box-shadow: none;
+}
+
+.application-footer {
+  min-block-size: var(--footer-height);
+  grid-area: footer;
+  padding: var(--space-1) var(--space-4);
+  border-top: 1px solid var(--border);
+  background: var(--bg-panel);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
 
 .primary-navigation {
   min-inline-size: 0;
@@ -237,22 +285,10 @@ body.application-shell {
   color: var(--text-primary);
 }
 
-.application-main {
-  grid-area: main;
-  min-inline-size: 0;
-  min-block-size: 0;
-  overflow: auto;
-  background: var(--bg-app);
-  padding: var(--space-6);
-  padding-top: var(--space-5);
-}
 
-.workspace {
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5);
-  box-shadow: var(--shadow-card);
-}
+/* ==========================================================================
+   Dashboard
+   ========================================================================== */
 
 .dashboard-grid {
   display: grid;
@@ -282,6 +318,10 @@ body.application-shell {
   color: var(--text-primary);
   font-size: var(--font-size-lg);
 }
+
+/* ==========================================================================
+   Components
+   ========================================================================== */
 
 .development-progress__body {
   display: grid;
@@ -323,12 +363,4 @@ body.application-shell {
   transition: inline-size var(--transition-normal) var(--transition-easing);
 }
 
-.application-footer {
-  min-block-size: var(--footer-height);
-  grid-area: footer;
-  padding: var(--space-1) var(--space-4);
-  border-top: 1px solid var(--border);
-  background: var(--bg-panel);
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-}
+
