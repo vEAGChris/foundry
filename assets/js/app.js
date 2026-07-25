@@ -1,9 +1,7 @@
-const DATA_FILES = {
-  project: 'assets/data/project.json',
-  tickets: 'assets/data/tickets.json',
-  milestones: 'assets/data/milestones.json',
-  releases: 'assets/data/releases.json',
-};
+import { loadMilestones } from "./repositories/milestoneRepository.js";
+import { loadTickets } from "./repositories/ticketRepository.js";
+import { loadReleases } from "./repositories/releaseRepository.js";
+import { loadProject } from "./repositories/projectRepository.js";
 
 // Consider replacing DASHBOARD_CARD_BINDINGS with data-bind attributes on the cards in a future refactor.
 const DASHBOARD_CARD_BINDINGS = {
@@ -12,22 +10,6 @@ const DASHBOARD_CARD_BINDINGS = {
   Sprint: 'currentSprint',
   'Current Ticket': 'currentTicket',
 };
-
-/**
- * Loads a JSON data file and reports which file was unavailable.
- *
- * @param {string} path The path to the JSON file.
- * @returns {Promise<object|Array>} The parsed JSON data.
- */
-async function loadJson(path) {
-  const response = await fetch(path);
-
-  if (!response.ok) {
-    throw new Error(`Unable to load ${path}: ${response.status}`);
-  }
-
-  return response.json();
-}
 
 /**
  * Finds an item in a collection by its id.
@@ -170,10 +152,10 @@ function populateDevelopmentProgress(progress) {
 async function loadProjectConfiguration() {
   try {
     const [project, tickets, milestones, releases] = await Promise.all([
-      loadJson(DATA_FILES.project),
-      loadJson(DATA_FILES.tickets),
-      loadJson(DATA_FILES.milestones),
-      loadJson(DATA_FILES.releases),
+        loadProject(),
+        loadTickets(),
+        loadMilestones(),
+        loadReleases(),
     ]);
     const model = createProjectModel(project, tickets, milestones, releases);
     const values = createDashboardValues(model);
