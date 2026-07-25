@@ -4,6 +4,9 @@ import { loadReleases } from "./repositories/releaseRepository.js";
 import { loadTickets } from "./repositories/ticketRepository.js";
 import { renderDashboardView } from "./views/dashboardView.js";
 
+const applicationState = {
+  currentView: "dashboard",
+}
 // Consider replacing DASHBOARD_CARD_BINDINGS with data-bind attributes on the cards in a future refactor.
 const DASHBOARD_CARD_BINDINGS = {
   'Current Project': 'currentProject',
@@ -38,6 +41,15 @@ function calculateDevelopmentProgress(tickets) {
   return { completedTickets, totalTickets, percentage };
 }
 
+function initialiseNavigation() {
+  document.querySelectorAll('.navigation-item').forEach((item) => {
+    item.addEventListener('click', () => {
+      applicationState.currentView = item.dataset.view;
+
+      console.log("Current view:", applicationState.currentView);
+    });
+  });
+}
 /**
  * Resolves project references to their records so display values are derived
  * from one source of truth.
@@ -171,4 +183,7 @@ async function loadProjectConfiguration() {
   }
 }
 
+document.getElementById("app").innerHTML = renderDashboardView();
+
+initialiseNavigation();
 loadProjectConfiguration();
