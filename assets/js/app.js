@@ -56,6 +56,7 @@ function renderCurrentView() {
 
     case "dashboard":
       app.innerHTML = renderDashboardView();
+      populateCurrentView();
       break;
 
     case "tickets":
@@ -235,7 +236,7 @@ function populateDashboard() {
   if (!appState.project) {
     return;
   }
-  
+
   const model = createProjectModel(
     appState.project, 
     appState.tickets, 
