@@ -3,6 +3,7 @@ import { loadProject } from "./repositories/projectRepository.js";
 import { loadReleases } from "./repositories/releaseRepository.js";
 import { loadTickets } from "./repositories/ticketRepository.js";
 import { renderDashboardView } from "./views/dashboardView.js";
+import { renderTicketsView } from "./views/ticketsView.js";
 
 const appState = {
   currentView: "dashboard",
@@ -46,7 +47,7 @@ function initialiseNavigation() {
     item.addEventListener('click', () => {
       appState.currentView = item.dataset.view;
 
-      console.log("Current view:", appState.currentView);
+      renderCurrentView();
     });
   });
 }
@@ -159,7 +160,6 @@ function populateDevelopmentProgress(progress) {
   });
 }
 
-document.getElementById('app').innerHTML = renderDashboardView();
 /**
  * Loads the project data and applies it to the existing dashboard.
  */
@@ -183,7 +183,8 @@ async function loadProjectConfiguration() {
   }
 }
 
-document.getElementById("app").innerHTML = renderDashboardView();
+renderCurrentView();
 
 initialiseNavigation();
+
 loadProjectConfiguration();
