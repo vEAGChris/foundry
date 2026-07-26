@@ -7,7 +7,13 @@ import { renderTicketsView } from "./views/ticketsView.js";
 
 const appState = {
   currentView: "dashboard",
-}
+
+  project: null,
+  tickets: [],
+  milestones: [],
+  releases: [],
+};
+
 // Consider replacing DASHBOARD_CARD_BINDINGS with data-bind attributes on the cards in a future refactor.
 const DASHBOARD_CARD_BINDINGS = {
   'Current Project': 'currentProject',
@@ -40,6 +46,31 @@ function calculateDevelopmentProgress(tickets) {
   const percentage = totalTickets === 0 ? 0 : Math.round((completedTickets / totalTickets) * 100);
 
   return { completedTickets, totalTickets, percentage };
+}
+
+function renderCurrentView() {
+
+  const app = document.getElementById("app");
+
+  switch (appState.currentView) {
+
+    case "dashboard":
+      app.innerHTML = renderDashboardView();
+      break;
+
+    case "tickets":
+      app.innerHTML = renderTicketsView();
+      break;
+
+    default:
+      app.innerHTML = `
+        <section class="view">
+          <h2>Coming Soon</h2>
+          <p>This section hasn't been built yet.</p>
+        </section>
+      `;
+  }
+
 }
 
 function initialiseNavigation() {
@@ -163,7 +194,7 @@ function populateDevelopmentProgress(progress) {
 /**
  * Loads the project data and applies it to the existing dashboard.
  */
-async function loadProjectConfiguration() {
+async function loadApplicationData() {
   try {
     const [project, tickets, milestones, releases] = await Promise.all([
         loadProject(),
@@ -171,20 +202,56 @@ async function loadProjectConfiguration() {
         loadMilestones(),
         loadReleases(),
     ]);
-    const model = createProjectModel(project, tickets, milestones, releases);
-    const values = createDashboardValues(model);
 
-    populateProjectBindings(values);
-    populateDashboardCards(values);
-    populateDevelopmentProgress(model.developmentProgress);
+    appState.project = project;
+    appState.tickets = tickets;
+    appState.milestones = milestones;
+    appState.releases = releases;
+    
+    populateCurrentView();
   } catch (error) {
     // Leave the existing placeholders visible if the dashboard data is unavailable.
     console.error('VEAG Foundry dashboard data could not be loaded.', error);
   }
 }
 
+function populateCurrentView() {
+  switch (appState.currentView) {
+
+    case "dashboard":
+      populateDashboard();
+      break;
+
+    case "tickets":
+      break;
+
+    default:
+      break;
+  }
+}
+
+function populateDashboard() {
+
+  if (!appState.project) {
+    return;
+  }
+  
+  const model = createProjectModel(
+    appState.project, 
+    appState.tickets, 
+    appState.milestones, 
+    appState.releases
+  );
+  
+  const values = createDashboardValues(model);
+
+  populateProjectBindings(values);
+  populateDashboardCards(values);
+  populateDevelopmentProgress(model.developmentProgress);
+}
+
 renderCurrentView();
 
 initialiseNavigation();
 
-loadProjectConfiguration();
+loadApplicationData();
