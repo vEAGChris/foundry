@@ -1,14 +1,15 @@
 import { loadMilestones } from "./repositories/milestoneRepository.js";
-import { loadProject } from "./repositories/projectRepository.js";
+import { loadProjects } from "./repositories/projectsRepository.js";
 import { loadReleases } from "./repositories/releaseRepository.js";
 import { loadTickets } from "./repositories/ticketRepository.js";
 import { renderDashboardView } from "./views/dashboardView.js";
 import { renderTicketsView } from "./views/ticketsView.js";
+import { renderProjectsView } from "./views/projectsView.js";
 
 const appState = {
   currentView: "dashboard",
 
-  project: null,
+  projects: [],
   tickets: [],
   milestones: [],
   releases: [],
@@ -61,6 +62,10 @@ function renderCurrentView() {
 
     case "tickets":
       app.innerHTML = renderTicketsView(appState.tickets);
+      break;
+
+    case "projects":
+      app.innerHTML = renderProjectsView(appState.projects);
       break;
 
     default:
@@ -198,14 +203,14 @@ function populateDevelopmentProgress(progress) {
  */
 async function loadApplicationData() {
   try {
-    const [project, tickets, milestones, releases] = await Promise.all([
-        loadProject(),
+    const [projects, tickets, milestones, releases] = await Promise.all([
+        loadProjects(),
         loadTickets(),
         loadMilestones(),
         loadReleases(),
     ]);
 
-    appState.project = project;
+    appState.projects = projects;
     appState.tickets = tickets;
     appState.milestones = milestones;
     appState.releases = releases;
@@ -234,12 +239,12 @@ function populateCurrentView() {
 
 function populateDashboard() {
 
-  if (!appState.project) {
+  if (!appState.projects?.length) {
     return;
   }
 
   const model = createProjectModel(
-    appState.project, 
+    appState.projects[0], 
     appState.tickets, 
     appState.milestones, 
     appState.releases

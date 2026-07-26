@@ -1,0 +1,16 @@
+[
+  {
+    "id": "foundry",
+    "name": "VEAG Foundry",
+    "description": "Engineering Platform",
+    "version": "0.3.0",
+    "status": "development"
+  },
+  {
+    "id": "ops",
+    "name": "VEAG Ops Site",
+    "description": "Operations Portal",
+    "version": "1.4.2",
+    "status": "live"
+  }
+]
