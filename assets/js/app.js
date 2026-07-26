@@ -4,7 +4,7 @@ import { loadReleases } from "./repositories/releaseRepository.js";
 import { loadTickets } from "./repositories/ticketRepository.js";
 import { renderDashboardView } from "./views/dashboardView.js";
 
-const applicationState = {
+const appState = {
   currentView: "dashboard",
 }
 // Consider replacing DASHBOARD_CARD_BINDINGS with data-bind attributes on the cards in a future refactor.
@@ -44,9 +44,9 @@ function calculateDevelopmentProgress(tickets) {
 function initialiseNavigation() {
   document.querySelectorAll('.navigation-item').forEach((item) => {
     item.addEventListener('click', () => {
-      applicationState.currentView = item.dataset.view;
+      appState.currentView = item.dataset.view;
 
-      console.log("Current view:", applicationState.currentView);
+      console.log("Current view:", appState.currentView);
     });
   });
 }
