@@ -247,6 +247,16 @@ body.application-shell {
   min-inline-size: 0;
 }
 
+.navigation-item--active {
+    background: var(--colour-primary);
+    color: #fff;
+    border-radius: 6px;
+}
+
+.navigation-item--active a {
+    color: inherit;
+}
+
 .navigation-list {
   display: grid;
   gap: var(--space-1);

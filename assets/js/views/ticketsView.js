@@ -1,5 +1,3 @@
-import { loadTickets } from "../repositories/ticketRepository.js";
-
 import { createStatusBadge, createPriorityBadge } from "../components/badge.js";
 
 function createTicketRow(ticket) {
@@ -25,8 +23,7 @@ function createEmptyState() {
     `;
 }
 
-export async function renderTicketsView() {
-    const tickets = await loadTickets();
+export function renderTicketsView(tickets = []) {
 
     const sortedTickets = [...tickets].sort((a, b) => a.order - b.order);
 

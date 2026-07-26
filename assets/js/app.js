@@ -60,7 +60,7 @@ function renderCurrentView() {
       break;
 
     case "tickets":
-      app.innerHTML = renderTicketsView();
+      app.innerHTML = renderTicketsView(appState.tickets);
       break;
 
     default:
@@ -71,6 +71,7 @@ function renderCurrentView() {
         </section>
       `;
   }
+  updateActiveNavigation();
 
 }
 
@@ -249,6 +250,15 @@ function populateDashboard() {
   populateProjectBindings(values);
   populateDashboardCards(values);
   populateDevelopmentProgress(model.developmentProgress);
+}
+
+function updateActiveNavigation() {
+    document.querySelectorAll(".navigation-item").forEach((item) => {
+        item.classList.toggle(
+            "navigation-item--active",
+            item.dataset.view === appState.currentView
+        );
+    });
 }
 
 renderCurrentView();
