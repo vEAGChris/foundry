@@ -10,6 +10,8 @@ const appState = {
   currentView: "dashboard",
 
   projects: [],
+  activeProject: null,
+
   tickets: [],
   milestones: [],
   releases: [],
@@ -211,6 +213,8 @@ async function loadApplicationData() {
     ]);
 
     appState.projects = projects;
+    appState.activeProject = projects[0] ?? null;
+    
     appState.tickets = tickets;
     appState.milestones = milestones;
     appState.releases = releases;
@@ -239,15 +243,15 @@ function populateCurrentView() {
 
 function populateDashboard() {
 
-  if (!appState.projects?.length) {
-    return;
+  if (!appState.activeProject) {
+      return;
   }
 
   const model = createProjectModel(
-    appState.projects[0], 
-    appState.tickets, 
-    appState.milestones, 
-    appState.releases
+      appState.activeProject,
+      appState.tickets,
+      appState.milestones,
+      appState.releases
   );
   
   const values = createDashboardValues(model);
