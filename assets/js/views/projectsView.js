@@ -1,7 +1,20 @@
-export function renderProjectsView(projects = []) {
+export function renderProjectsView(
+    projects = [],
+    activeProject = null
+) {
 
-    const cards = projects.map(project => `
-        <article class="project-card">
+    const cards = projects.map(project => {
+
+        const active =
+            project.id === activeProject?.id
+                ? "project-card--active"
+                : "";
+
+        return `
+        <article 
+            class="project-card ${active}"
+            data-project-id="${project.id}">
+        
             <h2>${project.name}</h2>
 
             <p>${project.description}</p>
@@ -11,7 +24,8 @@ export function renderProjectsView(projects = []) {
                 <li><strong>Status:</strong> ${project.status}</li>
             </ul>
         </article>
-    `).join("");
+        `;
+    }).join("");
 
     return `
         <section class="projects-view">

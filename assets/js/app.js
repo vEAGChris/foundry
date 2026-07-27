@@ -67,7 +67,13 @@ function renderCurrentView() {
       break;
 
     case "projects":
-      app.innerHTML = renderProjectsView(appState.projects);
+      app.innerHTML = renderProjectsView(
+        appState.projects,
+        appState.activeProject
+      );
+
+      initialiseProjectSelection();
+
       break;
 
     default:
@@ -79,6 +85,27 @@ function renderCurrentView() {
       `;
   }
   updateActiveNavigation();
+
+}
+
+function initialiseProjectSelection() {
+
+  document.querySelectorAll(".project-card").forEach((card) => {
+
+    card.addEventListener("click", () => {
+
+      const projectId = card.dataset.projectId;
+
+      appState.activeProject =
+        appState.projects.find(project => project.id === projectId) ?? null;
+
+      appState.currentView = "dashboard";
+
+      renderCurrentView();
+
+    });
+
+  });
 
 }
 
