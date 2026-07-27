@@ -248,13 +248,9 @@ body.application-shell {
 }
 
 .navigation-item--active {
-    background: var(--colour-primary);
-    color: #fff;
-    border-radius: 6px;
-}
-
-.navigation-item--active a {
-    color: inherit;
+  border-inline-start-color: var(--veag-accent);
+  background: var(--bg-hover);
+  color: var(--text-primary);
 }
 
 .navigation-list {
@@ -283,14 +279,6 @@ body.application-shell {
 
 .navigation-item:hover {
   border-inline-start-color: var(--border);
-  background: var(--bg-hover);
-  color: var(--text-primary);
-}
-
-.navigation-item.is-active,
-.navigation-item[aria-current="page"],
-.navigation-list:not(:has(.navigation-item.is-active, .navigation-item[aria-current="page"])) .navigation-item:first-child {
-  border-inline-start-color: var(--veag-accent);
   background: var(--bg-hover);
   color: var(--text-primary);
 }
