@@ -1,3 +1,28 @@
+# v0.4.0 - Projects - 2026-07-30
+
+## Added
+
+- Multi-project support
+- Active project state
+- Project selection workflow
+- Persistent active project using Local Storage
+- Responsive Projects workspace
+- Active project highlighting
+- Current project badge
+
+## Imrpoved
+
+- Sidebar navigation state
+- Project workspace layout
+- Application UX and navigation flow
+- Visual consistency across dashboard and projects
+
+## Internal 
+
+- Removed assumption that the first project is always active
+- Introduced reusable active project architecture for future models
+- Continued separation of repositories, application state and stateless views
+
 # v0.3.0 - Live Dashboard
 
 ## Added
