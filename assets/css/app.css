@@ -317,19 +317,74 @@ body.application-shell {
   font-size: var(--font-size-lg);
 }
 
+/* ==========================================================================
+   Projects
+   ========================================================================== */
+
+
 .project-card {
-    cursor: pointer;
-    transition:
-        border-color var(--transition-fast),
-        transform var(--transition-fast);
+  position: relative;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-panel);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .project-card:hover {
-    transform: translateY(-2px);
+  border-color: var(--veag-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-dropdown);
 }
 
 .project-card--active {
-    border-color: var(--veag-accent);
+  border-color: var(--veag-accent);
+  box-shadow:
+    0 0 0 1px var(--veag-accent),
+    var(--shadow-dropdown);
+}
+
+.project-card__status {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-round);
+    background: rgba(23, 199, 202, 0.15);
+    color: var(--veag-accent);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+}
+
+.project-card__badge {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+
+  display: inline-flex;
+  align-items: center;
+
+  padding: 0.35rem 0.75rem;
+
+  border-radius: var(--radius-round);
+
+  background: var(--veag-accent);
+  color: var(--veag-primary-dark);
+
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-4);
 }
 
 /* ==========================================================================
