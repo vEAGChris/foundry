@@ -14,6 +14,8 @@ export function renderProjectsView(
         <article 
             class="project-card ${active}"
             data-project-id="${project.id}">
+
+            ${active ? '<span class="project-card__badge">Current</span>' : ''}
         
             <h2>${project.name}</h2>
 
@@ -31,7 +33,9 @@ export function renderProjectsView(
         <section class="projects-view">
             <h1>Projects</h1>
 
-            ${cards}
+            <div class="projects-grid">
+                ${cards}
+            </div>
         </section>
     `;
 }
