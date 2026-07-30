@@ -25,6 +25,10 @@ const DASHBOARD_CARD_BINDINGS = {
   'Current Ticket': 'currentTicket',
 };
 
+const STORAGE_KEYS = {
+  activeProject: "activeProjectId",
+};
+
 /**
  * Finds an item in a collection by its id.
  *
@@ -99,6 +103,8 @@ function initialiseProjectSelection() {
       appState.activeProject =
         appState.projects.find(project => project.id === projectId) ?? null;
 
+      localStorage.setItem(STORAGE_KEYS.activeProject, projectId);
+      
       appState.currentView = "dashboard";
 
       renderCurrentView();
@@ -240,7 +246,13 @@ async function loadApplicationData() {
     ]);
 
     appState.projects = projects;
-    appState.activeProject = projects[0] ?? null;
+
+    const activeProjectId = localStorage.getItem(STORAGE_KEYS.activeProject);
+
+    appState.activeProject =
+      appState.projects.find(project => project.id === activeProjectId) ??
+      appState.projects[0] ??
+      null;
     
     appState.tickets = tickets;
     appState.milestones = milestones;
