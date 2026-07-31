@@ -1,17 +1,20 @@
 [
     {
-        "id":"M0.4",
-        "title":"Application Shell",
-        "status":"completed"
+        "id": "M0.4",
+        "projectId": "foundry",
+        "title": "Application Shell",
+        "status": "completed"
     },
     {
-        "id":"M0.5",
-        "title":"Dashboard Components",
-        "status":"completed"
+        "id": "M0.5",
+        "projectId": "foundry",
+        "title": "Dashboard Components",
+        "status": "in-progress"
     },
     {
-        "id":"M0.6",
-        "title":"Live Dashboard",
-        "status":"in-progress"
+        "id": "M0.6",
+        "projectId": "foundry",
+        "title": "Live Dashboard",
+        "status": "planned"
     }
 ]
