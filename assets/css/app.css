@@ -388,6 +388,38 @@ body.application-shell {
 }
 
 /* ==========================================================================
+   Milestones
+   ========================================================================== */
+
+.milestone-grid {
+
+    display:grid;
+    gap:1rem;
+
+}
+
+.milestone-card {
+
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:1rem;
+
+}
+
+.milestone-card__status--completed {
+    color: var(--success);
+}
+
+.milestone-card__status--in-progress {
+    color: var(--warning);
+}
+
+.milestone-card__status--planned {
+    color: var(--muted);
+}
+
+/* ==========================================================================
    Components
    ========================================================================== */
 

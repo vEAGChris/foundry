@@ -5,6 +5,7 @@ import { loadTickets } from "./repositories/ticketRepository.js";
 import { renderDashboardView } from "./views/dashboardView.js";
 import { renderTicketsView } from "./views/ticketsView.js";
 import { renderProjectsView } from "./views/projectsView.js";
+import { renderMilestonesView } from "./views/milestonesView.js";
 
 const appState = {
   currentView: "dashboard",
@@ -103,6 +104,15 @@ function renderCurrentView() {
       );
 
       initialiseProjectSelection();
+
+      break;
+
+    case "milestones":
+
+      app.innerHTML =
+          renderMilestonesView(
+              getVisibleMilestones()
+          );
 
       break;
 
