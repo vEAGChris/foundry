@@ -55,6 +55,12 @@ function calculateDevelopmentProgress(tickets) {
   return { completedTickets, totalTickets, percentage };
 }
 
+function getVisibleTickets() {
+  return appState.tickets.filter(
+    ticket => ticket.projectId === appState.activeProject?.id
+  );
+}
+
 function renderCurrentView() {
 
   const app = document.getElementById("app");
@@ -66,9 +72,11 @@ function renderCurrentView() {
       populateCurrentView();
       break;
 
-    case "tickets":
-      app.innerHTML = renderTicketsView(appState.tickets);
+    case "tickets": {
+
+      app.innerHTML = renderTicketsView(getVisibleTickets());
       break;
+    }
 
     case "projects":
       app.innerHTML = renderProjectsView(
