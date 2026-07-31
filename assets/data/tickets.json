@@ -1,6 +1,7 @@
 [
     {
         "id": "FND-001",
+        "projectId": "foundry",
         "title": "Create Application Shell",
         "status": "completed",
         "priority": "high",
@@ -9,10 +10,21 @@
     },
     {
         "id": "FND-002",
+        "projectId": "foundry",
         "title": "Rename workspace-container",
         "status": "completed",
         "priority": "low",
         "milestone": "M0.4",
         "order": 2
-    }
+    },
+
+    {
+    "id": "OPS-001",
+    "projectId": "ops",
+    "title": "Dummy Ops Ticket",
+    "status": "planned",
+    "priority": "low",
+    "milestone": "M1.0",
+    "order": 1
+}
 ]
