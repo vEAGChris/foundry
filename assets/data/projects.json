@@ -3,12 +3,12 @@
     "id": "foundry",
     "name": "VEAG Foundry",
     "description": "Internal engineering workbench",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "status": "development",
 
-    "currentSprint": "v0.5.0",
+    "currentSprint": "v0.6.0",
 
-    "activeTicketId": "FND-025"
+    "activeTicketId": "FND-029"
   },
   {
     "id": "ops",

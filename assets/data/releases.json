@@ -27,7 +27,14 @@
         "projectId": "foundry",
         "version": "0.5.0",
         "title": "Project-Aware Tooling",
-        "date": null,
-        "status": "in-progress"
+        "date": "2026-07-31",
+        "status": "release"
+    },
+    {
+        "projectId": "foundry",
+        "version": "0.6.0",
+        "title": "Planning & Delivery",
+        "date": "null",
+        "status": "development"
     }
 ]
