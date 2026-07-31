@@ -388,19 +388,21 @@ body.application-shell {
 }
 
 /* ==========================================================================
-   Milestones
+   Milestones / Releases
    ========================================================================== */
 
-.milestone-grid {
+.milestone-grid,
+.release-grid {
 
     display:grid;
     gap:1rem;
 
 }
 
-.milestone-card {
+.milestone-card,
+.release-card {
 
-    background:var(--surface);
+    background:var(--bg-panel);
     border:1px solid var(--border);
     border-radius:8px;
     padding:1rem;
@@ -416,7 +418,7 @@ body.application-shell {
 }
 
 .milestone-card__status--planned {
-    color: var(--muted);
+    color: var(--text-muted);
 }
 
 /* ==========================================================================

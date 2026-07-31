@@ -6,6 +6,7 @@ import { renderDashboardView } from "./views/dashboardView.js";
 import { renderTicketsView } from "./views/ticketsView.js";
 import { renderProjectsView } from "./views/projectsView.js";
 import { renderMilestonesView } from "./views/milestonesView.js";
+import { renderReleasesView } from "./views/releasesView.js";
 
 const appState = {
   currentView: "dashboard",
@@ -115,6 +116,14 @@ function renderCurrentView() {
           );
 
       break;
+
+      case "releases":
+
+        app.innerHTML = renderReleasesView(
+            getVisibleReleases()
+        );
+
+        break;
 
     default:
       app.innerHTML = `
