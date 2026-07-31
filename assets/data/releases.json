@@ -1,12 +1,33 @@
 [
     {
-        "version":"0.1.0",
-        "title":"Initial Foundation",
-        "date":"2026-07-24"
+        "projectId": "foundry",
+        "version": "0.1.0",
+        "title": "Initial Foundation",
+        "date": "2026-07-24"
     },
     {
-        "version":"0.2.0",
-        "title":"Dashboard Foundation",
-        "date":"2026-07-24"
+        "projectId": "foundry",
+        "version": "0.2.0",
+        "title": "Dashboard Foundation",
+        "date": "2026-07-24"
+    },
+    {
+        "projectId": "foundry",
+        "version": "0.3.0",
+        "title": "Core Navigation & Routing",
+        "date": "2026-07-29"
+    },
+    {
+        "projectId": "foundry",
+        "version": "0.4.0",
+        "title": "Projects Workspace",
+        "date": "2026-07-30"
+    },
+    {
+        "projectId": "foundry",
+        "version": "0.5.0",
+        "title": "Project-Aware Tooling",
+        "date": null,
+        "status": "in-progress"
     }
 ]

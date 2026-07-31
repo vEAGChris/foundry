@@ -40,6 +40,12 @@ function findById(items, id) {
   return Array.isArray(items) ? items.find((item) => item.id === id) : undefined;
 }
 
+function findReleaseByVersion(releases, version) {
+    return Array.isArray(releases)
+        ? releases.find(release => release.version === version)
+        : undefined;
+}
+
 /**
  * Calculates development progress from the current ticket collection.
  *
@@ -59,6 +65,18 @@ function getVisibleTickets() {
   return appState.tickets.filter(
     ticket => ticket.projectId === appState.activeProject?.id
   );
+}
+
+function getVisibleMilestones() {
+    return appState.milestones.filter(
+        milestone => milestone.projectId === appState.activeProject?.id
+    );
+}
+
+function getVisibleReleases() {
+    return appState.releases.filter(
+        release => release.projectId === appState.activeProject?.id
+    );
 }
 
 function renderCurrentView() {
@@ -142,16 +160,19 @@ function initialiseNavigation() {
  * @param {Array<object>} releases The available releases.
  * @returns {object} The project data with its related records.
  */
+
 function createProjectModel(project, tickets, milestones, releases) {
-  return {
-    project,
-    developmentProgress: calculateDevelopmentProgress(tickets),
-    activeTicket: findById(tickets, project.activeTicketId),
-    currentMilestone: findById(milestones, project.currentMilestone),
-    currentRelease: Array.isArray(releases)
-      ? releases.find((release) => release.version === project.currentRelease)
-      : undefined,
-  };
+    if (!project) {
+        return null;
+    }
+
+    return {
+        project,
+        developmentProgress: calculateDevelopmentProgress(tickets),
+        activeTicket: findById(tickets, project.activeTicketId),
+        currentMilestone: findById(milestones, project.currentMilestone),
+        currentRelease: findReleaseByVersion(releases, project.currentRelease)
+    };
 }
 
 /**

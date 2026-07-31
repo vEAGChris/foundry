@@ -1,3 +1,26 @@
+# v0.5.0 - Project-aware Tooling - 2026-07-31
+
+## Added
+
+- Project-aware dashboard.
+- Project-aware ticket filtering.
+- Project-aware milestone support.
+- Project-aware release support.
+- Persistent active project selection.
+- Project-aware data model across core entities.
+
+## Changed
+
+- Projects, tickets, milestones and releases now consistently use `projectId`.
+- Dashboard model now resolves project relationships through a unified project model.
+- Release history updated to reflect the application's development timeline.
+
+## Technical
+
+- Introduced project filtering helpers for tickets, milestones and releases.
+- Improved separation between repositories, application state and rendering.
+- Prepared the data model for future Milestones and Releases views.
+
 # v0.4.0 - Projects - 2026-07-30
 
 ## Added
