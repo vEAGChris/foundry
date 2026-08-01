@@ -27,6 +27,28 @@ export function renderTicketDetails(ticket) {
 
             <h3>${ticket.title}</h3>
 
+            <h4>Description</h4>
+
+            <p>${ticket.description || "No description."}</p>
+
+            <h4>Acceptance Criteria</h4>
+
+            <ul class="ticket-details__criteria">
+
+                ${
+                    ticket.acceptanceCriteria?.length
+                        ? ticket.acceptanceCriteria
+                            .map(item => `<li>${item}</li>`)
+                            .join("")
+                        : "<li>No acceptance criteria.</li>"
+                }
+
+            <h4>Engineering Notes</h4>
+
+            <p>${ticket.notes || "No engineering notes."}</p>
+
+            </ul>
+
             <dl class="ticket-details__metadata">
 
                 <dt>Priority</dt>

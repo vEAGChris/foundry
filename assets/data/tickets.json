@@ -2,11 +2,22 @@
     {
         "id": "FND-001",
         "projectId": "foundry",
+        "order": 1,
         "title": "Create Application Shell",
+        "description": "Create the initial application shell including the layout, navigation and content workspace.",
+        "acceptanceCriteria": [
+            "Application loads successfully.",
+            "Navigation is displayed.",
+            "Workspace layout is responsive."
+        ],
+        "notes": "",
         "status": "completed",
         "priority": "high",
+        "estimate": 2,
         "milestone": "M0.4",
-        "order": 1
+        "release": "0.1.0",
+        "created": "2026-07-24",
+        "completed": "2026-07-24"
     },
     {
         "id": "FND-002",
@@ -19,12 +30,43 @@
     },
 
     {
-    "id": "OPS-001",
-    "projectId": "ops",
-    "title": "Dummy Ops Ticket",
-    "status": "planned",
-    "priority": "low",
-    "milestone": "M1.0",
-    "order": 1
-}
+        "id": "FND-032",
+        "projectId": "foundry",
+        "order": 32,
+
+        "title": "Ticket Detail Workspace",
+
+        "description": "Create a split-view ticket workspace allowing engineers to browse tickets while viewing detailed ticket information without leaving the page.",
+
+        "acceptanceCriteria": [
+            "Clicking a ticket selects it.",
+            "Selected ticket is highlighted.",
+            "Ticket details update immediately.",
+            "No page navigation occurs.",
+            "Solution supports future ticket editing."
+        ],
+
+        "notes": "",
+
+        "status": "completed",
+        "priority": "high",
+
+        "estimate": 3,
+
+        "milestone": "M0.6",
+        "release": "0.6.0",
+
+        "created": "2026-08-01",
+        "completed": "2026-08-01"
+    },
+
+    {
+        "id": "OPS-001",
+        "projectId": "ops",
+        "title": "Dummy Ops Ticket",
+        "status": "planned",
+        "priority": "low",
+        "milestone": "M1.0",
+        "order": 1
+    }
 ]
