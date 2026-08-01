@@ -21,15 +21,37 @@ export function renderTicketDetails(ticket) {
 
                 <h2>${ticket.id}</h2>
 
-                ${createStatusBadge(ticket.status)}
+                <label>Status</label>
+
+                <select class="ticket-editor__status">
+
+                    <option ${ticket.status === "planned" ? "selected" : ""}>planned</option>
+
+                    <option ${ticket.status === "in-progress" ? "selected" : ""}>in-progress</option>
+
+                    <option ${ticket.status === "blocked" ? "selected" : ""}>blocked</option>
+
+                    <option ${ticket.status === "review" ? "selected" : ""}>review</option>
+
+                    <option ${ticket.status === "completed" ? "selected" : ""}>completed</option>
+
+                    <option ${ticket.status === "cancelled" ? "selected" : ""}>cancelled</option>
+
+                </select>
 
             </header>
 
-            <h3>${ticket.title}</h3>
+            <input
+                class="ticket-editor__title"
+                type="text"
+                value="${ticket.title}" >
 
             <h4>Description</h4>
 
-            <p>${ticket.description || "No description."}</p>
+            <textarea
+                class="ticket-editor__description"
+                rows="5"
+            >${ticket.description || ""}</textarea>
 
             <h4>Acceptance Criteria</h4>
 
@@ -43,19 +65,35 @@ export function renderTicketDetails(ticket) {
                         : "<li>No acceptance criteria.</li>"
                 }
 
+            </ul>
+
             <h4>Engineering Notes</h4>
 
-            <p>${ticket.notes || "No engineering notes."}</p>
-
-            </ul>
+            <textarea
+                class="ticket-editor__notes"
+                rows="4"
+            >${ticket.notes || ""}</textarea>
 
             <dl class="ticket-details__metadata">
 
                 <dt>Priority</dt>
-                <dd>${createPriorityBadge(ticket.priority)}</dd>
+                <select class="ticket-editor__priority">
+
+                    <option ${ticket.priority === "critical" ? "selected" : ""}>critical</option>
+                    <option ${ticket.priority === "high" ? "selected" : ""}>high</option>
+                    <option ${ticket.priority === "medium" ? "selected" : ""}>medium</option>
+                    <option ${ticket.priority === "low" ? "selected" : ""}>low</option>
+
+                </select>
 
                 <dt>Milestone</dt>
-                <dd>${ticket.milestone}</dd>
+                <select class="ticket-editor__milestone">
+
+                    <option selected>
+                        ${ticket.milestone}
+                    </option>
+
+                </select>
 
             </dl>
 
