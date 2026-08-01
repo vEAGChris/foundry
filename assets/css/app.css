@@ -116,6 +116,58 @@ body {
 }
 
 /* ==========================================================================
+   Tickets
+   ========================================================================== */
+
+.tickets-workspace {
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-5);
+
+}
+
+.ticket-details {
+
+    padding: var(--space-5);
+
+    border: 1px solid var(--colour-border);
+    border-radius: var(--radius-lg);
+
+    background: var(--colour-surface);
+
+}
+
+.ticket-table__row {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.ticket-table__row:hover {
+    background-color: var(--colour-surface-hover);
+}
+
+.ticket-table__row--selected {
+    background-color: rgba(23, 199, 202, 0.15);
+}
+
+.ticket-table__row--selected:hover {
+    background-color: rgba(23, 199, 202, 0.20);
+}
+
+.ticket-row {
+    cursor: pointer;
+}
+
+.ticket-row--selected {
+    background: rgba(23, 199, 202, 0.12);
+}
+
+.ticket-row:hover {
+    background: var(--bg-hover);
+}
+
+/* ==========================================================================
    Branding
    ========================================================================== */
 .product-brand {

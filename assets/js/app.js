@@ -15,6 +15,8 @@ const appState = {
   activeProject: null,
 
   tickets: [],
+  selectedTicket: null,
+
   milestones: [],
   releases: [],
 };
@@ -69,6 +71,15 @@ function getVisibleTickets() {
   );
 }
 
+function getSelectedTicket() {
+
+  return (
+    appState.selectedTicket ??
+    getVisibleTickets()[0] ??
+    null
+  );
+}
+
 function getVisibleMilestones() {
     return appState.milestones.filter(
         milestone => milestone.projectId === appState.activeProject?.id
@@ -79,6 +90,29 @@ function getVisibleReleases() {
     return appState.releases.filter(
         release => release.projectId === appState.activeProject?.id
     );
+}
+
+function initialiseTicketSelection() {
+
+    console.log("Initialising ticket selection");
+
+    document.querySelectorAll("[data-ticket-id]").forEach((row) => {
+
+        row.addEventListener("click", () => {
+
+            console.log("Clicked", row.dataset.ticketId);
+
+            const ticketId = row.dataset.ticketId;
+
+            appState.selectedTicket =
+                getVisibleTickets().find(ticket => ticket.id === ticketId);
+
+            renderCurrentView();
+
+        });
+
+    });
+
 }
 
 function renderCurrentView() {
@@ -94,7 +128,13 @@ function renderCurrentView() {
 
     case "tickets": {
 
-      app.innerHTML = renderTicketsView(getVisibleTickets());
+      app.innerHTML = renderTicketsView(
+        getVisibleTickets(),
+        getSelectedTicket()
+      );
+
+      initialiseTicketSelection();
+
       break;
     }
 
