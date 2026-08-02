@@ -97,6 +97,17 @@ export function renderTicketDetails(ticket) {
 
             </dl>
 
+        <div class="ticket-editor__actions">
+
+            <button
+                type="button"
+                class="button button--primary"
+                id="save-ticket">
+                Save
+            </button>
+
+        </div>
+        
         </aside>
     `;
 }

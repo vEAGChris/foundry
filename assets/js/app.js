@@ -7,6 +7,7 @@ import { renderTicketsView } from "./views/ticketsView.js";
 import { renderProjectsView } from "./views/projectsView.js";
 import { renderMilestonesView } from "./views/milestonesView.js";
 import { renderReleasesView } from "./views/releasesView.js";
+import { saveTickets } from "./repositories/ticketRepository.js";
 
 const appState = {
   currentView: "dashboard",
@@ -115,6 +116,65 @@ function initialiseTicketSelection() {
 
 }
 
+function buildEditedTicket(ticket) {
+
+    return {
+
+        ...ticket,
+
+        title: document.querySelector(".ticket-editor__title").value,
+
+        description: document.querySelector(".ticket-editor__description").value,
+
+        status: document.querySelector(".ticket-editor__status").value,
+
+        priority: document.querySelector(".ticket-editor__priority").value,
+
+        milestone: document.querySelector(".ticket-editor__milestone").value,
+
+        notes: document.querySelector(".ticket-editor__notes").value
+
+    };
+
+}
+
+function initialiseTicketEditor() {
+
+    const saveButton = document.getElementById("save-ticket");
+
+    if (!saveButton) {
+        return;
+    }
+
+    saveButton.addEventListener("click", async (event) => {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      try {
+
+          const editedTicket = buildEditedTicket(getSelectedTicket());
+
+          const updatedTickets = appState.tickets.map(ticket =>
+            ticket.id === editedTicket.id 
+                ? editedTicket 
+                : ticket
+          );
+
+          await saveTickets(updatedTickets);
+          appState.tickets = updatedTickets;
+          appState.selectedTicket = editedTicket;
+
+      } catch (error) {
+
+          console.error("SAVE FAILED", error);
+
+      }
+
+  });
+
+}
+
 function renderCurrentView() {
 
   const app = document.getElementById("app");
@@ -134,6 +194,7 @@ function renderCurrentView() {
       );
 
       initialiseTicketSelection();
+      initialiseTicketEditor();
 
       break;
     }
