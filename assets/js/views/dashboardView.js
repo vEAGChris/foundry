@@ -1,6 +1,6 @@
 export function renderDashboardView() {
     return `
-          <section class="workspace" aria-label="Workspace">
+          <section aria-label="Dashboard">
         <div class="dashboard-grid">
           <section class="dashboard-card">
             <header class="dashboard-card__header">

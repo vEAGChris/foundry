@@ -1,3 +1,5 @@
+import { renderProjectDetails } from "../components/projectDetailsPanel.js";
+
 export function renderProjectsView(
     projects = [],
     activeProject = null
@@ -30,12 +32,32 @@ export function renderProjectsView(
     }).join("");
 
     return `
-        <section class="projects-view">
-            <h1>Projects</h1>
+        <section class="workspace">
 
-            <div class="projects-grid">
-                ${cards}
+            <div class="projects-list">
+
+                <header class="projects-view__header">
+
+                    <div>
+
+                        <h1>Projects</h1>
+                        <p>Manage project configuration.</p>
+
+                    </div>
+
+                </header>
+
+                <div class="projects-grid">
+
+                    ${cards}
+
+                </div>
+
             </div>
+
+            ${renderProjectDetails(activeProject)}
+
         </section>
+
     `;
 }

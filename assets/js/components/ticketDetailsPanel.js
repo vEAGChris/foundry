@@ -6,7 +6,7 @@ export function renderTicketDetails(
 
     if (!ticket) {
         return `
-            <aside class="ticket-details">
+            <aside class="workspace-details">
 
                 <h2>Ticket Details</h2>
 
@@ -17,7 +17,7 @@ export function renderTicketDetails(
     }
 
     return `
-        <aside class="ticket-details">
+        <aside class="workspace-details">
 
             <header class="ticket-details__header">
 
@@ -51,7 +51,7 @@ export function renderTicketDetails(
             ${
                 errors.title
                     ? `<p class="ticket-editor__error">${errors.title}</p>`
-                    : ""
+                    : ""        
             }
 
             <h4>Description</h4>

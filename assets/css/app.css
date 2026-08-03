@@ -119,7 +119,7 @@ body {
    Tickets
    ========================================================================== */
 
-.tickets-workspace {
+.workspace {
 
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -127,7 +127,7 @@ body {
 
 }
 
-.ticket-details {
+.workspace-details {
 
     padding: var(--space-5);
 
@@ -437,6 +437,35 @@ body.application-shell {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: var(--space-4);
+}
+
+.project-details {
+
+    background: var(--surface-1);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+
+}
+
+.project-details__list {
+
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: .75rem 1rem;
+
+}
+
+.project-details dt {
+
+    font-weight: 600;
+
+}
+
+.project-details dd {
+
+    margin: 0;
+
 }
 
 /* ==========================================================================

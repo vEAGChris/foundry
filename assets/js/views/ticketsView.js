@@ -51,7 +51,7 @@ export function renderTicketsView(
         : createEmptyState();
 
     return `
-    <section class="tickets-workspace">
+    <section class="workspace">
 
         <div class="tickets-list">
 
