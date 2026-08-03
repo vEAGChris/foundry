@@ -20,6 +20,8 @@ router.get("/", async (req, res) => {
 });
 
 router.put("/", async (req, res) => {
+    console.log("PUT received");
+    console.log(req.body);
     try {
         await saveTickets(req.body);
         res.json({

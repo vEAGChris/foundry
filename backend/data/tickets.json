@@ -18,7 +18,7 @@
             "ui"
         ],
         "dependencies": [],
-        "status": "planned",
+        "status": "completed",
         "priority": "high",
         "estimate": 3,
         "milestone": "M0.6.1",
@@ -49,7 +49,7 @@
         "dependencies": [
             "FND-034"
         ],
-        "status": "planned",
+        "status": "completed",
         "priority": "high",
         "estimate": 5,
         "milestone": "M0.6.1",
@@ -81,7 +81,7 @@
             "FND-034",
             "FND-035"
         ],
-        "status": "planned",
+        "status": "completed",
         "priority": "high",
         "estimate": 3,
         "milestone": "M0.6.1",

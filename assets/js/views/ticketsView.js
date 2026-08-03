@@ -57,8 +57,23 @@ export function renderTicketsView(
         <div class="tickets-list">
 
             <header class="tickets-view__header">
-                <h1>Tickets</h1>
-                <p>Manage project work items.</p>
+
+                <div>
+
+                    <h1>Tickets</h1>
+                    <p>Manage project work items.</p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="button button--primary"
+                    id="new-ticket">
+
+                    New Ticket
+
+                </button>
+
             </header>
 
             <div class="ticket-table-container">

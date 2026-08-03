@@ -32,3 +32,21 @@ The project is organised as a lightweight static-site foundation so pages, style
 ## Status
 
 The repository currently contains the initial project structure and is ready for implementation.
+
+## Requirements
+
+- Node.js
+- npm
+
+## Frontend
+
+Open with Live Server.
+
+## Backend
+
+cd backend
+npm install
+npm start
+
+API:
+http://localhost:3001

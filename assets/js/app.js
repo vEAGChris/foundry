@@ -116,6 +116,55 @@ function initialiseTicketSelection() {
 
 }
 
+function createNewTicket() {
+
+    return {
+
+        id: getNextTicketId(),
+
+        projectId: appState.activeProject.id,
+
+        order: getNextTicketOrder(),
+
+        title: "Untitled Ticket",
+
+        description: "",
+
+        acceptanceCriteria: [],
+
+        notes: "",
+
+        status: "planned",
+
+        priority: "medium",
+
+        milestone: "M0.6.1",
+//      milestone: appState.activeProject.currentMilestone
+
+    };
+
+}
+
+function getNextTicketId() {
+
+    const highestNumber = Math.max(
+        ...appState.tickets.map(ticket =>
+            Number(ticket.id.replace("FND-", ""))
+        )
+    );
+
+    return `FND-${String(highestNumber + 1).padStart(3, "0")}`;
+
+}
+
+function getNextTicketOrder() {
+
+    return Math.max(
+        ...appState.tickets.map(ticket => ticket.order)
+    ) + 1;
+
+}
+
 function buildEditedTicket(ticket) {
 
     return {
@@ -160,10 +209,12 @@ function initialiseTicketEditor() {
                 ? editedTicket 
                 : ticket
           );
-
           await saveTickets(updatedTickets);
+
           appState.tickets = updatedTickets;
           appState.selectedTicket = editedTicket;
+
+          renderCurrentView();
 
       } catch (error) {
 
@@ -172,6 +223,32 @@ function initialiseTicketEditor() {
       }
 
   });
+
+}
+
+function initialiseNewTicketButton() {
+
+    const button = document.getElementById("new-ticket");
+
+    if (!button) {
+        return;
+    }
+
+    button.addEventListener("click", async () => {
+
+        const newTicket = createNewTicket();
+
+        appState.tickets.push(newTicket);
+
+        appState.selectedTicket = newTicket;
+
+        await saveTickets(appState.tickets);
+
+        renderCurrentView();
+        document.querySelector(".ticket-editor__title")?.focus();
+        document.querySelector(".ticket-editor__title")?.select();
+
+    });
 
 }
 
@@ -195,6 +272,7 @@ function renderCurrentView() {
 
       initialiseTicketSelection();
       initialiseTicketEditor();
+      initialiseNewTicketButton();
 
       break;
     }
