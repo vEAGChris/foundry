@@ -2,7 +2,7 @@
     {
         "id": "FND-034",
         "projectId": "foundry",
-        "order": 34,
+        "order": 1,
         "title": "Ticket Editor",
         "description": "Replace the read-only ticket details panel with an editable workspace, allowing engineers to modify ticket metadata without editing JSON files directly.",
         "acceptanceCriteria": [
@@ -31,7 +31,7 @@
     {
         "id": "FND-035",
         "projectId": "foundry",
-        "order": 35,
+        "order": 2,
         "title": "Ticket Persistence",
         "description": "Implement the persistence layer for ticket data, allowing changes made in the Ticket Editor to be saved and reloaded without manual modification of the underlying JSON files.",
         "acceptanceCriteria": [
@@ -62,7 +62,7 @@
     {
         "id": "FND-036",
         "projectId": "foundry",
-        "order": 36,
+        "order": 3,
         "title": "Create Ticket",
         "description": "Implement the ability to create new tickets directly from the Foundry interface. New tickets should be initialised with sensible defaults, automatically assigned the next available ticket number, and persisted using the ticket persistence layer.",
         "acceptanceCriteria": [
@@ -94,7 +94,7 @@
     {
         "id": "FND-037",
         "projectId": "foundry",
-        "order": 37,
+        "order": 4,
         "title": "Delete Ticket",
         "description": "Allow engineers to permanently delete tickets from the project while preventing accidental data loss through a confirmation workflow.",
         "acceptanceCriteria": [
@@ -114,7 +114,7 @@
         "dependencies": [
             "FND-035"
         ],
-        "status": "planned",
+        "status": "completed",
         "priority": "medium",
         "estimate": 2,
         "milestone": "M0.6.1",
@@ -123,38 +123,5 @@
         "completed": null,
         "commitMessage": "FND-037: Add ticket deletion workflow",
         "branchName": "feature/FND-037-delete-ticket"
-    },
-    {
-        "id": "FND-038",
-        "projectId": "foundry",
-        "order": 38,
-        "title": "Ticket Validation",
-        "description": "Implement client-side validation for ticket creation and editing to ensure all ticket data is complete, consistent and conforms to the Foundry data model before it can be saved.",
-        "acceptanceCriteria": [
-            "Required fields are validated before saving.",
-            "Validation errors are displayed inline.",
-            "Invalid tickets cannot be saved.",
-            "Validation rules are shared between Create and Edit workflows.",
-            "Users receive clear guidance on how to resolve validation errors."
-        ],
-        "notes": "",
-        "labels": [
-            "tickets",
-            "validation",
-            "ux"
-        ],
-        "dependencies": [
-            "FND-034",
-            "FND-036"
-        ],
-        "status": "planned",
-        "priority": "high",
-        "estimate": 3,
-        "milestone": "M0.6.1",
-        "release": "0.6.0",
-        "created": "2026-08-01",
-        "completed": null,
-        "commitMessage": "FND-038: Add ticket validation",
-        "branchName": "feature/FND-038-ticket-validation"
     }
 ]

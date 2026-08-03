@@ -101,6 +101,13 @@ export function renderTicketDetails(ticket) {
 
             <button
                 type="button"
+                class="button button--danger"
+                id="delete-ticket">
+                Delete
+            </button>
+
+            <button
+                type="button"
                 class="button button--primary"
                 id="save-ticket">
                 Save

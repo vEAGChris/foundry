@@ -517,4 +517,12 @@ body.application-shell {
   transition: inline-size var(--transition-normal) var(--transition-easing);
 }
 
+.button--danger {
+    background: #c62828;
+    color: #fff;
+}
+
+.button--danger:hover {
+    background: #b71c1c;
+}
 

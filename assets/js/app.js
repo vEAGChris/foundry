@@ -252,6 +252,60 @@ function initialiseNewTicketButton() {
 
 }
 
+function initialiseDeleteTicketButton() {
+
+    const button = document.getElementById("delete-ticket");
+
+    if (!button) {
+        return;
+    }
+
+    button.addEventListener("click", async () => {
+
+        const selectedTicket = getSelectedTicket();
+
+        if (!selectedTicket) {
+            return;
+        }
+
+        if (appState.tickets.length === 1) {
+            alert(
+                "Foundry requires at least one ticket. Create another ticket before deleting this one."
+            );
+            return;
+        }
+
+        if (!confirm(`Delete ${selectedTicket.id}?`)) {
+            return;
+        }
+
+        const deletedIndex = appState.tickets.findIndex(
+            ticket => ticket.id === selectedTicket.id
+        );
+        
+        const remainingTickets = appState.tickets.filter(
+            ticket => ticket.id !== selectedTicket.id
+        );
+
+        remainingTickets.forEach((ticket, index) => {
+            ticket.order = index + 1;
+        });
+
+        appState.tickets = remainingTickets;
+   
+        appState.selectedTicket =
+            remainingTickets[deletedIndex] ??
+            remainingTickets[deletedIndex - 1] ??
+            null;
+
+        await saveTickets(appState.tickets);
+
+        renderCurrentView();
+
+    });
+
+}
+
 function renderCurrentView() {
 
   const app = document.getElementById("app");
@@ -273,6 +327,7 @@ function renderCurrentView() {
       initialiseTicketSelection();
       initialiseTicketEditor();
       initialiseNewTicketButton();
+      initialiseDeleteTicketButton();
 
       break;
     }
