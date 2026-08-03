@@ -34,8 +34,9 @@ function createEmptyState() {
 }
 
 export function renderTicketsView(
-    tickets = [],
-    selectedTicket = null
+    tickets,
+    selectedTicket,
+    errors = {}
 ) {
 
     const sortedTickets = [...tickets].sort((a, b) => a.order - b.order);
@@ -99,7 +100,10 @@ export function renderTicketsView(
 
         </div>
 
-        ${renderTicketDetails(selectedTicket)}
+        ${renderTicketDetails(
+            selectedTicket,
+            errors
+        )}
 
     </section>
 `;

@@ -1,6 +1,8 @@
 import { createPriorityBadge, createStatusBadge } from "./badge.js";
 
-export function renderTicketDetails(ticket) {
+export function renderTicketDetails(
+    ticket, 
+    errors = {}) {
 
     if (!ticket) {
         return `
@@ -45,6 +47,12 @@ export function renderTicketDetails(ticket) {
                 class="ticket-editor__title"
                 type="text"
                 value="${ticket.title}" >
+
+            ${
+                errors.title
+                    ? `<p class="ticket-editor__error">${errors.title}</p>`
+                    : ""
+            }
 
             <h4>Description</h4>
 

@@ -8,6 +8,7 @@ import { renderProjectsView } from "./views/projectsView.js";
 import { renderMilestonesView } from "./views/milestonesView.js";
 import { renderReleasesView } from "./views/releasesView.js";
 import { saveTickets } from "./repositories/ticketRepository.js";
+import { validateTicket } from "./validators/ticketValidation.js";
 
 const appState = {
   currentView: "dashboard",
@@ -20,6 +21,8 @@ const appState = {
 
   milestones: [],
   releases: [],
+
+  errors: [],
 };
 
 // Consider replacing DASHBOARD_CARD_BINDINGS with data-bind attributes on the cards in a future refactor.
@@ -209,6 +212,19 @@ function initialiseTicketEditor() {
                 ? editedTicket 
                 : ticket
           );
+
+          const validation = validateTicket(editedTicket);
+
+          if (!validation.valid) {
+
+              alert(Object.values(validation.errors).join("\n"));
+
+              return;
+
+          }
+          
+          appState.errors = [];
+          
           await saveTickets(updatedTickets);
 
           appState.tickets = updatedTickets;
@@ -321,7 +337,8 @@ function renderCurrentView() {
 
       app.innerHTML = renderTicketsView(
         getVisibleTickets(),
-        getSelectedTicket()
+        getSelectedTicket(),
+        appState.errors
       );
 
       initialiseTicketSelection();

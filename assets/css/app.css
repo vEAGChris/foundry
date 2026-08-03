@@ -526,3 +526,8 @@ body.application-shell {
     background: #b71c1c;
 }
 
+.field-error {
+    margin-top: 0.25rem;
+    color: #d32f2f;
+    font-size: 0.85rem;
+}

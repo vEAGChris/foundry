@@ -123,5 +123,38 @@
         "completed": null,
         "commitMessage": "FND-037: Add ticket deletion workflow",
         "branchName": "feature/FND-037-delete-ticket"
+    },
+    {
+        "id": "FND-038",
+        "projectId": "foundry",
+        "order": 5,
+        "title": "Ticket Validation",
+        "description": "Implement client-side validation for ticket creation and editing to ensure all ticket data is complete, consistent and conforms to the Foundry data model before it can be saved.",
+        "acceptanceCriteria": [
+            "Required fields are validated before saving.",
+            "Validation errors are displayed inline.",
+            "Invalid tickets cannot be saved.",
+            "Validation rules are shared between Create and Edit workflows.",
+            "Users receive clear guidance on how to resolve validation errors."
+        ],
+        "notes": "",
+        "labels": [
+            "tickets",
+            "validation",
+            "ux"
+        ],
+        "dependencies": [
+            "FND-034",
+            "FND-036"
+        ],
+        "status": "in-progress",
+        "priority": "high",
+        "estimate": 3,
+        "milestone": "M0.6.1",
+        "release": "0.6.0",
+        "created": "2026-08-01",
+        "completed": null,
+        "commitMessage": "FND-038: Add ticket validation",
+        "branchName": "feature/FND-038-ticket-validation"
     }
 ]
