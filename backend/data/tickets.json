@@ -132,11 +132,11 @@
         "description": "Implement client-side validation for ticket creation and editing to ensure all ticket data is complete, consistent and conforms to the Foundry data model before it can be saved.",
         "acceptanceCriteria": [
             "Required fields are validated before saving.",
-            "Validation errors are displayed inline.",
             "Invalid tickets cannot be saved.",
+            "Users receive clear feedback when validation fails.",
             "Validation rules are shared between Create and Edit workflows.",
-            "Users receive clear guidance on how to resolve validation errors."
-        ],
+            "Validation logic is encapsulated in a reusable validator."
+        ]
         "notes": "",
         "labels": [
             "tickets",
@@ -147,7 +147,7 @@
             "FND-034",
             "FND-036"
         ],
-        "status": "in-progress",
+        "status": "completed",
         "priority": "high",
         "estimate": 3,
         "milestone": "M0.6.1",
@@ -156,5 +156,133 @@
         "completed": null,
         "commitMessage": "FND-038: Add ticket validation",
         "branchName": "feature/FND-038-ticket-validation"
+    },
+    {
+        "id": "FND-039",
+        "projectId": "foundry",
+        "order": 6,
+        "title": "Editor Validation Framework",
+        "description": "Implement a reusable validation framework for Foundry editors, providing inline validation, field state tracking and a consistent user experience across tickets, projects, milestones and releases.",
+        "acceptanceCriteria": [
+            "Validation errors are displayed inline beneath invalid fields.",
+            "Invalid fields are visually highlighted.",
+            "Validation messages update as the user edits values.",
+            "The first invalid field receives focus when validation fails.",
+            "Validation behaviour is reusable across all Foundry editors.",
+            "Existing ticket validation is migrated to the new framework."
+        ],
+        "notes": "",
+        "status": "planned",
+        "priority": "medium",
+        "milestone": "M0.7.0"
+    },
+    {
+        "id": "FND-040",
+        "projectId": "foundry",
+        "order": 7,
+        "title": "Project Editor",
+        "description": "Allow project configuration to be edited from within Foundry rather than directly editing JSON files.",
+        "acceptanceCriteria": [
+            "Project metadata can be edited.",
+            "Current sprint can be updated.",
+            "Current release can be updated.",
+            "Project changes are validated before saving.",
+            "Changes are persisted through the backend API."
+        ],
+        "notes": "",
+        "status": "planned",
+        "priority": "medium",
+        "milestone": "M0.7.0"
+    },
+    {
+        "id": "FND-041",
+        "projectId": "foundry",
+        "order": 8,
+        "title": "Milestone Editor",
+        "description": "Provide full milestone management within Foundry.",
+        "acceptanceCriteria": [
+            "Milestones can be created.",
+            "Milestones can be edited.",
+            "Milestones can be deleted.",
+            "Milestones are validated before saving.",
+            "Milestone changes are persisted through the backend API."
+        ],
+        "notes": "",
+        "status": "planned",
+        "priority": "medium",
+        "milestone": "M0.7.0"
+    },
+    {
+        "id": "FND-042",
+        "projectId": "foundry",
+        "order": 9,
+        "title": "Release Editor",
+        "description": "Provide full release management within Foundry.",
+        "acceptanceCriteria": [
+            "Releases can be created.",
+            "Releases can be edited.",
+            "Releases can be deleted.",
+            "Releases are validated before saving.",
+            "Release changes are persisted through the backend API."
+        ],
+        "notes": "",
+        "status": "planned",
+        "priority": "medium",
+        "milestone": "M0.7.0"
+    },
+    {
+        "id": "FND-043",
+        "projectId": "foundry",
+        "order": 10,
+        "title": "Ticket Relationships",
+        "description": "Support relationships between tickets to model dependencies and related work.",
+        "acceptanceCriteria": [
+            "Tickets can be marked as blocked by another ticket.",
+            "Tickets can be marked as depending on another ticket.",
+            "Related tickets can be linked.",
+            "Circular dependencies are prevented.",
+            "Relationship information is displayed within the ticket editor."
+        ],
+        "notes": "",
+        "status": "planned",
+        "priority": "medium",
+        "milestone": "M0.7.0"
+    },
+    {
+        "id": "FND-044",
+        "projectId": "foundry",
+        "order": 11,
+        "title": "Search & Filtering",
+        "description": "Improve ticket discovery through searching and filtering.",
+        "acceptanceCriteria": [
+            "Tickets can be searched by ID.",
+            "Tickets can be searched by title.",
+            "Tickets can be filtered by status.",
+            "Tickets can be filtered by priority.",
+            "Multiple filters can be combined.",
+            "Results update without reloading the page."
+        ],
+        "notes": "",
+        "status": "planned",
+        "priority": "medium",
+        "milestone": "M0.7.0"
+    },
+    {
+        "id": "FND-045",
+        "projectId": "foundry",
+        "order": 12,
+        "title": "Ticket Sorting",
+        "description": "Allow tickets to be sorted using multiple criteria.",
+        "acceptanceCriteria": [
+            "Tickets can be sorted by ID.",
+            "Tickets can be sorted by priority.",
+            "Tickets can be sorted by status.",
+            "Tickets can be sorted by milestone.",
+            "Manual ordering remains available."
+        ],
+        "notes": "",
+        "status": "planned",
+        "priority": "medium",
+        "milestone": "M0.7.0"
     }
 ]
