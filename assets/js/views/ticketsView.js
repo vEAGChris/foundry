@@ -64,6 +64,12 @@ export function renderTicketsView(
                     <h1>Tickets</h1>
                     <p>Manage project work items.</p>
 
+                    <input
+                        type="search"
+                        id="ticket-search"
+                        class="ticket-search"
+                        placeholder="Search by ID or title...">
+
                 </div>
 
                 <button

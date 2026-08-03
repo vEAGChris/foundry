@@ -171,7 +171,7 @@
             "Ticket editor uses the reusable renderer."
         ],
         "notes": "",
-        "status": "in-progress",
+        "status": "completed",
         "priority": "medium",
         "milestone": "M0.7.0"
     },
@@ -261,8 +261,8 @@
             "Multiple filters can be combined.",
             "Results update without reloading the page."
         ],
-        "notes": "",
-        "status": "planned",
+        "notes": "Need to create partial rendering",
+        "status": "completed",
         "priority": "medium",
         "milestone": "M0.7.0"
     },
@@ -314,5 +314,23 @@
         "completed": null,
         "commitMessage": null,
         "branchName": "feature/FND-046-workspace-persistence"
+    },
+    {
+        "id": "FND-047",
+        "projectId": "foundry",
+        "order": 13,
+        "title": "Partial View Rendering",
+        "description": "Refactor the ticket workspace to support partial UI updates without re-rendering the entire page, improving responsiveness and preserving focus during interactive operations.",
+        "acceptanceCriteria": [
+            "Updating the ticket list does not recreate the editor.",
+            "Updating search results preserves focus in the search box.",
+            "Ticket selection is preserved where possible.",
+            "Search, filtering and sorting update only the ticket list.",
+            "Partial rendering utilities are reusable by future views."
+        ],
+        "notes": "",
+        "status": "planned",
+        "priority": "medium",
+        "milestone": "M0.7.0"
     }
 ]

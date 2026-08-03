@@ -27,6 +27,10 @@ const appState = {
   releases: [],
 
   errors: [],
+
+  filters: {
+    search: ""
+  },
 };
 
 // Consider replacing DASHBOARD_CARD_BINDINGS with data-bind attributes on the cards in a future refactor.
@@ -352,7 +356,7 @@ function renderCurrentView() {
     case "tickets": {
 
       app.innerHTML = renderTicketsView(
-        getVisibleTickets(),
+        getFilteredTickets(),
         getSelectedTicket(),
         appState.errors
       );
@@ -361,6 +365,7 @@ function renderCurrentView() {
       initialiseTicketEditor();
       initialiseNewTicketButton();
       initialiseDeleteTicketButton();
+      initialiseTicketSearch();
 
       break;
     }
@@ -424,6 +429,26 @@ function initialiseProjectSelection() {
     });
 
   });
+
+}
+
+function initialiseTicketSearch() {
+
+    const search = document.getElementById("ticket-search");
+
+    if (!search) {
+        return;
+    }
+
+    search.value = appState.filters.search;
+
+    search.addEventListener("input", (event) => {
+
+        appState.filters.search = event.target.value;
+
+        renderCurrentView();
+
+    });
 
 }
 
@@ -613,6 +638,26 @@ function populateDashboard() {
   populateProjectBindings(values);
   populateDashboardCards(values);
   populateDevelopmentProgress(model.developmentProgress);
+}
+
+function getFilteredTickets() {
+
+    const search = appState.filters.search
+        .trim()
+        .toLowerCase();
+
+    if (!search) {
+        return getVisibleTickets();
+    }
+
+    return getVisibleTickets().filter(ticket =>
+
+        ticket.id.toLowerCase().includes(search) ||
+
+        ticket.title.toLowerCase().includes(search)
+
+    );
+
 }
 
 function updateActiveNavigation() {
