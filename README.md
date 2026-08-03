@@ -9,12 +9,21 @@ The project is organised as a lightweight static-site foundation so pages, style
 ```text
 .
 +-- assets/
-|   +-- css/       # Shared stylesheets
-|   +-- data/      # Content and structured data
-|   +-- img/       # Images and other visual assets
-|   `-- js/        # Client-side JavaScript
-+-- pages/         # Site pages and page-specific source
-`-- exports/       # Generated or shareable deliverables
+|   +-- css/
+|   +-- data/          # Frontend reference data
+|   +-- img/
+|   `-- js/
+|
++-- backend/
+|   +-- config/
+|   +-- data/          # Backend persistence
+|   +-- routes/
+|   +-- services/
+|   +-- package.json
+|   `-- server.js
+|
++-- pages/
+`-- exports/
 ```
 
 ## Getting started
@@ -31,7 +40,7 @@ The project is organised as a lightweight static-site foundation so pages, style
 
 ## Status
 
-The repository currently contains the initial project structure and is ready for implementation.
+The repository contains the current implementation of VEAG Foundry, including ticket management, persistence services and the supporting development infrastructure.
 
 ## Requirements
 
@@ -40,7 +49,20 @@ The repository currently contains the initial project structure and is ready for
 
 ## Frontend
 
-Open with Live Server.
+From the project root:
+
+```bash
+npx serve .
+```
+
+## Architecture
+
+Foundry uses a simple client/server architecture.
+
+- The frontend is served as static files.
+- The backend provides a REST API using Express.
+- Editable data is stored in `backend/data`.
+- Read-only reference data remains under `assets/data`.
 
 ## Backend
 

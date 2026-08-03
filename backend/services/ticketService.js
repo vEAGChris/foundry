@@ -19,8 +19,6 @@ export async function getTickets() {
 
 export async function saveTickets(tickets) {
 
-    console.log("Saving:", tickets);
-
     const data = JSON.stringify(tickets, null, 4);
 
     await fs.writeFile(

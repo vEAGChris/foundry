@@ -1,6 +1,8 @@
+import { API_BASE } from "../config/api.js";
+
 export async function loadTickets() {
 
-    const response = await fetch("http://localhost:3001/api/tickets");
+    const response = await fetch(`${API_BASE}/tickets`);
 
     if (!response.ok) {
         throw new Error("Unable to load tickets.");
@@ -12,7 +14,7 @@ export async function loadTickets() {
 
 export async function saveTickets(tickets) {
 
-    const response = await fetch("http://localhost:3001/api/tickets", {
+    const response = await fetch(`${API_BASE}/tickets`, {
 
         method: "PUT",
 
