@@ -136,7 +136,7 @@
             "Users receive clear feedback when validation fails.",
             "Validation rules are shared between Create and Edit workflows.",
             "Validation logic is encapsulated in a reusable validator."
-        ]
+        ],
         "notes": "",
         "labels": [
             "tickets",
@@ -179,7 +179,7 @@
     {
         "id": "FND-040",
         "projectId": "foundry",
-        "order": 7,
+        "order": 9,
         "title": "Project Editor",
         "description": "Allow project configuration to be edited from within Foundry rather than directly editing JSON files.",
         "acceptanceCriteria": [
@@ -197,7 +197,7 @@
     {
         "id": "FND-041",
         "projectId": "foundry",
-        "order": 8,
+        "order": 10,
         "title": "Milestone Editor",
         "description": "Provide full milestone management within Foundry.",
         "acceptanceCriteria": [
@@ -215,7 +215,7 @@
     {
         "id": "FND-042",
         "projectId": "foundry",
-        "order": 9,
+        "order": 11,
         "title": "Release Editor",
         "description": "Provide full release management within Foundry.",
         "acceptanceCriteria": [
@@ -233,7 +233,7 @@
     {
         "id": "FND-043",
         "projectId": "foundry",
-        "order": 10,
+        "order": 12,
         "title": "Ticket Relationships",
         "description": "Support relationships between tickets to model dependencies and related work.",
         "acceptanceCriteria": [
@@ -251,7 +251,7 @@
     {
         "id": "FND-044",
         "projectId": "foundry",
-        "order": 11,
+        "order": 7,
         "title": "Search & Filtering",
         "description": "Improve ticket discovery through searching and filtering.",
         "acceptanceCriteria": [
@@ -270,7 +270,7 @@
     {
         "id": "FND-045",
         "projectId": "foundry",
-        "order": 12,
+        "order": 8,
         "title": "Ticket Sorting",
         "description": "Allow tickets to be sorted using multiple criteria.",
         "acceptanceCriteria": [
