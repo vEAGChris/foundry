@@ -9,6 +9,10 @@ import { renderMilestonesView } from "./views/milestonesView.js";
 import { renderReleasesView } from "./views/releasesView.js";
 import { saveTickets } from "./repositories/ticketRepository.js";
 import { validateTicket } from "./validators/ticketValidation.js";
+import {
+    showFieldError,
+    clearAllErrors
+} from "./components/validationRenderer.js";
 
 const appState = {
   currentView: "dashboard",
@@ -215,15 +219,27 @@ function initialiseTicketEditor() {
 
           const validation = validateTicket(editedTicket);
 
+          clearAllErrors();
+
           if (!validation.valid) {
 
-              alert(Object.values(validation.errors).join("\n"));
+              Object.entries(validation.errors).forEach(([name, message]) => {
+
+                  const field = document.querySelector(
+                      `.ticket-editor__${name}`
+                  );
+
+                  if (field) {
+
+                      showFieldError(field, message);
+
+                  }
+
+              });
 
               return;
 
           }
-          
-          appState.errors = [];
           
           await saveTickets(updatedTickets);
 

@@ -161,18 +161,17 @@
         "id": "FND-039",
         "projectId": "foundry",
         "order": 6,
-        "title": "Editor Validation Framework",
+        "title": "Reusable Validation Rendering",
         "description": "Implement a reusable validation framework for Foundry editors, providing inline validation, field state tracking and a consistent user experience across tickets, projects, milestones and releases.",
         "acceptanceCriteria": [
-            "Validation errors are displayed inline beneath invalid fields.",
-            "Invalid fields are visually highlighted.",
-            "Validation messages update as the user edits values.",
-            "The first invalid field receives focus when validation fails.",
-            "Validation behaviour is reusable across all Foundry editors.",
-            "Existing ticket validation is migrated to the new framework."
+            "Validation renderer component created.",
+            "Inline validation messages displayed.",
+            "Invalid fields visually highlighted.",
+            "Previous validation errors cleared before each validation.",
+            "Ticket editor uses the reusable renderer."
         ],
         "notes": "",
-        "status": "planned",
+        "status": "in-progress",
         "priority": "medium",
         "milestone": "M0.7.0"
     },
@@ -284,5 +283,36 @@
         "status": "planned",
         "priority": "medium",
         "milestone": "M0.7.0"
+    },
+    {
+        "id": "FND-046",
+        "projectId": "foundry",
+        "order": 8,
+        "title": "Workspace Persistence",
+        "description": "Persist the user's current working context independently of project configuration so Foundry restores the previous workspace on startup.",
+        "acceptanceCriteria": [
+            "The active project is restored when Foundry starts.",
+            "The selected ticket is restored when Foundry starts.",
+            "The selected milestone is restored when Foundry starts.",
+            "The selected release is restored when Foundry starts.",
+            "Workspace state is stored separately from project configuration.",
+            "Project configuration no longer contains transient UI state."
+        ],
+        "notes": "Introduce a dedicated workspace model (for example workspace.json) to separate persistent application state from project metadata. This lays the foundation for future user preferences, multiple workspaces and session restoration.",
+        "labels": [
+            "architecture",
+            "workspace",
+            "persistence"
+        ],
+        "dependencies": [],
+        "status": "planned",
+        "priority": "medium",
+        "estimate": 3,
+        "milestone": "M0.7.0",
+        "release": null,
+        "created": "2026-08-03",
+        "completed": null,
+        "commitMessage": null,
+        "branchName": "feature/FND-046-workspace-persistence"
     }
 ]
