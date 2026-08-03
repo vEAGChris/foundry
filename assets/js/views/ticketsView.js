@@ -39,10 +39,8 @@ export function renderTicketsView(
     errors = {}
 ) {
 
-    const sortedTickets = [...tickets].sort((a, b) => a.order - b.order);
-
-    const rows = sortedTickets.length
-        ? sortedTickets
+    const rows = tickets.length
+        ? tickets
             .map(ticket =>
                 createTicketRow(
                     ticket,
@@ -82,6 +80,24 @@ export function renderTicketsView(
                 </button>
 
             </header>
+            
+            <div class="ticket-toolbar">
+
+                <label for="ticket-sort">
+                    Sort by
+                </label>
+
+                <select id="ticket-sort">
+
+                    <option value="order">Order</option>
+                    <option value="id">ID</option>
+                    <option value="priority">Priority</option>
+                    <option value="status">Status</option>
+                    <option value="milestone">Milestone</option>
+
+                </select>
+
+            </div>
 
             <div class="ticket-table-container">
                 <table class="ticket-table">

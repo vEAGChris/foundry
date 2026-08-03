@@ -280,7 +280,7 @@
             "Manual ordering remains available."
         ],
         "notes": "",
-        "status": "planned",
+        "status": "completed",
         "priority": "medium",
         "milestone": "M0.7.0"
     },

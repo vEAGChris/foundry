@@ -31,6 +31,10 @@ const appState = {
   filters: {
     search: ""
   },
+
+  sort: {
+    by: "order",
+  },
 };
 
 // Consider replacing DASHBOARD_CARD_BINDINGS with data-bind attributes on the cards in a future refactor.
@@ -355,10 +359,17 @@ function renderCurrentView() {
 
     case "tickets": {
 
+      const filteredTickets = getFilteredTickets();
+
+      const sortedTickets = getSortedTickets(
+          filteredTickets,
+          appState.sort.by
+      );
+
       app.innerHTML = renderTicketsView(
-        getFilteredTickets(),
-        getSelectedTicket(),
-        appState.errors
+          sortedTickets,
+          getSelectedTicket(),
+          appState.errors
       );
 
       initialiseTicketSelection();
@@ -366,6 +377,7 @@ function renderCurrentView() {
       initialiseNewTicketButton();
       initialiseDeleteTicketButton();
       initialiseTicketSearch();
+      initialiseTicketSort();
 
       break;
     }
@@ -431,6 +443,81 @@ function initialiseProjectSelection() {
   });
 
 }
+//  Constants for sorting tickets by priority and status. Lower values indicate higher priority or earlier status in the workflow.
+    const PRIORITY_ORDER = {
+        critical: 0,
+        high: 1,
+        medium: 2,
+        low: 3  
+    };
+
+    const STATUS_ORDER = {
+        planned: 0,
+        "in-progress": 1,
+        blocked: 2,
+        review: 3,
+        completed: 4,
+        cancelled: 5
+    };
+
+function getSortedTickets(tickets, sortBy) {
+
+    const sorted = [...tickets];
+
+    switch (sortBy) {
+
+        case "id":
+
+            sorted.sort(
+                (a, b) => a.id.localeCompare(b.id)
+            );
+            
+            break;
+      
+        case "order":
+        default:
+
+            sorted.sort(
+                (a, b) => a.order - b.order
+            );
+
+            break;
+
+        case "priority":
+
+            sorted.sort((a, b) => 
+              
+              (PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority]) ||
+              (a.order - b.order)
+            );
+
+            break;
+
+        case "status":
+
+            sorted.sort((a, b) => 
+              
+              (STATUS_ORDER[a.status] - STATUS_ORDER[b.status]) ||
+              (a.order - b.order)
+            );
+
+            break;
+
+        case "milestone":
+
+            sorted.sort((a, b) => 
+              
+              a.milestone.localeCompare(b.milestone) ||
+              (a.order - b.order)
+            );
+
+            break;
+
+    }
+
+    return sorted;
+
+}
 
 function initialiseTicketSearch() {
 
@@ -445,6 +532,26 @@ function initialiseTicketSearch() {
     search.addEventListener("input", (event) => {
 
         appState.filters.search = event.target.value;
+
+        renderCurrentView();
+
+    });
+
+}
+
+function initialiseTicketSort() {
+
+    const select = document.getElementById("ticket-sort");
+
+    if (!select) {
+        return;
+    }
+
+    select.value = appState.sort.by;
+
+    select.addEventListener("change", (event) => {
+
+        appState.sort.by = event.target.value;
 
         renderCurrentView();
 
