@@ -3,10 +3,11 @@
     "id": "foundry",
     "name": "VEAG Foundry",
     "description": "Internal engineering workbench",
-    "version": "0.6.1",
-    "status": "development",
+        "status": "development",
 
     "currentSprint": "M0.7",
+
+    "currentRelease": "0.7.0",
 
     "activeTicketId": "FND-029"
   },
@@ -14,7 +15,9 @@
     "id": "ops",
     "name": "VEAG Ops Site",
     "description": "Operations Portal",
-    "version": "1.4.2",
+
+    "currentRelease": "1.4.2",
+
     "status": "live"
   }
 ]

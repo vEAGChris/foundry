@@ -189,7 +189,7 @@
             "Changes are persisted through the backend API."
         ],
         "notes": "",
-        "status": "in-progress",
+        "status": "completed",
         "priority": "medium",
         "milestone": "M0.7.0"
     },

@@ -38,6 +38,20 @@
         "projectId": "foundry",
         "version": "0.6.0",
         "title": "Planning & Delivery",
+        "date": "2026-08-02",
+        "status": "released"
+    },
+    {
+        "projectId": "foundry",
+        "version": "0.6.1",
+        "title": "Ticket Improvements",
+        "date": "2026-08-04",
+        "status": "released"
+    }, 
+    {
+        "projectId": "foundry",
+        "version": "0.7.0",
+        "title": "Project & Workspace Editors",
         "date": "null",
         "status": "development"
     }

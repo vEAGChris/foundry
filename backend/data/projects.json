@@ -1,20 +1,18 @@
 [
-  {
-    "id": "foundry",
-    "name": "VEAG Foundry",
-    "description": "Internal engineering workbench",
-    "version": "0.5.0",
-    "status": "development",
-
-    "currentSprint": "v0.6.0",
-
-    "activeTicketId": "FND-029"
-  },
-  {
-    "id": "ops",
-    "name": "VEAG Ops Site",
-    "description": "Operations Portal",
-    "version": "1.4.2",
-    "status": "live"
-  }
+    {
+        "id": "foundry",
+        "name": "VEAG Foundry",
+        "description": "Internal engineering workbench",
+        "status": "development",
+        "currentSprint": "v0.7.0",
+        "currentRelease": "0.7.0",
+        "activeTicketId": "FND-029"
+    },
+    {
+        "id": "ops",
+        "name": "VEAG Ops Site",
+        "description": "Operations Portal",
+        "currentRelease": "1.4.2",
+        "status": "live"
+    }
 ]

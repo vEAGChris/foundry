@@ -1,4 +1,7 @@
-export function renderProjectDetails(project) {
+export function renderProjectDetails(
+    project,
+    releases = []
+) {
 
     if (!project) {
 
@@ -19,23 +22,100 @@ export function renderProjectDetails(project) {
 
             <h2>Project Details</h2>
 
-            <h3>${project.name}</h3>
+            <div class="form-group">
 
-            <dl class="project-details__list">
+                <label>Name</label>
 
-                <dt>Description</dt>
-                <dd>${project.description}</dd>
+                <input
+                    class="project-editor__name"
+                    data-field="name"
+                    type="text"
+                    value="${project.name}">
 
-                <dt>Version</dt>
-                <dd>${project.version}</dd>
+            </div>
 
-                <dt>Status</dt>
-                <dd>${project.status}</dd>
+            <div class="form-group">
 
-                <dt>Current Sprint</dt>
-                <dd>${project.currentSprint}</dd>
+                <label>Description</label>
 
-            </dl>
+                <textarea
+                    class="project-editor__description"
+                    data-field="description"
+                >${project.description}</textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select 
+                    class="project-editor__status"
+                    data-field="status">
+
+                    <option value="development"
+                        ${project.status === "development" ? "selected" : ""}>
+                        Development
+                    </option>
+
+                    <option value="live"
+                        ${project.status === "live" ? "selected" : ""}>
+                        Live
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Current Sprint</label>
+
+                <input
+                    class="project-editor__currentSprint"
+                    data-field="currentSprint"
+                    type="text"
+                    value="${project.currentSprint}">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Current Release</label>
+
+                <select
+                    class="project-editor__currentRelease"
+                    data-field="currentRelease">
+
+                    ${releases
+                        .filter(release => release.projectId === project.id)
+                        .map(release => `
+                            <option
+                                value="${release.version}"
+                                ${project.currentRelease === release.version ? "selected" : ""}>
+
+                                ${release.version} — ${release.title}
+
+                            </option>
+                        `).join("")}
+
+                </select>
+
+            </div>
+
+            </div>
+
+            <div class="project-editor__actions">
+
+                <button
+                    id="save-project"
+                    class="button button--primary">
+
+                    Save Project
+
+                </button>
+
+            </div>
 
         </aside>
     `;

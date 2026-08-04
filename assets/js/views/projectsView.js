@@ -2,7 +2,8 @@ import { renderProjectDetails } from "../components/projectDetailsPanel.js";
 
 export function renderProjectsView(
     projects = [],
-    activeProject = null
+    activeProject = null,
+    releases = [],
 ) {
 
     const cards = projects.map(project => {
@@ -24,7 +25,7 @@ export function renderProjectsView(
             <p>${project.description}</p>
 
             <ul>
-                <li><strong>Version:</strong> ${project.version}</li>
+                <li><strong>Release:</strong> ${project.currentRelease}</li>
                 <li><strong>Status:</strong> ${project.status}</li>
             </ul>
         </article>
@@ -55,8 +56,10 @@ export function renderProjectsView(
 
             </div>
 
-            ${renderProjectDetails(activeProject)}
-
+            ${renderProjectDetails(
+                activeProject,
+                releases
+            )}
         </section>
 
     `;

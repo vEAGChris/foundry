@@ -8,7 +8,9 @@ import { renderProjectsView } from "./views/projectsView.js";
 import { renderMilestonesView } from "./views/milestonesView.js";
 import { renderReleasesView } from "./views/releasesView.js";
 import { saveTickets } from "./repositories/ticketRepository.js";
+import { saveProjects } from "./repositories/projectsRepository.js";
 import { validateTicket } from "./validators/ticketValidation.js";
+import { validateProject } from "./validators/projectValidation.js";
 import {
     showFieldError,
     clearAllErrors
@@ -346,6 +348,81 @@ function initialiseDeleteTicketButton() {
 
 }
 
+function buildEditedProject(project) {
+
+    return {
+
+        ...project,
+
+        name: document.querySelector(".project-editor__name").value,
+
+        description: document.querySelector(".project-editor__description").value,
+
+        status: document.querySelector(".project-editor__status").value,
+
+        currentSprint: document.querySelector(".project-editor__currentSprint").value,
+
+        currentRelease: document.querySelector(".project-editor__currentRelease").value,
+
+    };
+
+}
+
+function initialiseProjectEditor() {
+
+    const saveButton = document.getElementById("save-project");
+
+    if (!saveButton) {
+        return;
+    }
+
+    console.log(saveButton);
+
+    saveButton.addEventListener("click", async () => {
+
+        const editedProject = buildEditedProject(
+            appState.activeProject
+        );
+
+        const validation = validateProject(editedProject);
+
+        if (!validation.valid) {
+
+          clearAllErrors();
+
+          Object.entries(validation.errors).forEach(([name, message]) => {
+
+            const field = document.querySelector(
+              `[data-field="${name}"]`
+            );
+
+            if (field) {
+              showFieldError(field, message);
+            }
+          });
+
+          return;
+        }
+
+        clearAllErrors();
+
+        const updatedProjects = appState.projects.map(project =>
+          project.id === editedProject.id
+              ? editedProject
+              : project
+      );
+
+      await saveProjects(updatedProjects);
+
+      appState.projects = updatedProjects;
+      appState.activeProject = editedProject;
+
+      renderCurrentView();
+
+    });
+
+}
+
 function renderCurrentView() {
 
   const app = document.getElementById("app");
@@ -378,6 +455,7 @@ function renderCurrentView() {
       initialiseDeleteTicketButton();
       initialiseTicketSearch();
       initialiseTicketSort();
+      initialiseProjectEditor();
 
       break;
     }
@@ -385,10 +463,12 @@ function renderCurrentView() {
     case "projects":
       app.innerHTML = renderProjectsView(
         appState.projects,
-        appState.activeProject
+        appState.activeProject,
+        appState.releases
       );
 
       initialiseProjectSelection();
+      initialiseProjectEditor();
 
       break;
 
@@ -621,7 +701,7 @@ function createDashboardValues(model) {
   return {
     name: project.name,
     currentProject: project.name,
-    version: project.version,
+    Release: project.currentRelease,
     currentSprint: project.currentSprint,
     currentTicket: formatActiveTicket(activeTicket, project.activeTicketId),
     developmentProgressPercentage: `${developmentProgress.percentage}%`,

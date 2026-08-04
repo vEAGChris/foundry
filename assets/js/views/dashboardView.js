@@ -16,12 +16,12 @@ export function renderDashboardView() {
 
           <section class="dashboard-card">
             <header class="dashboard-card__header">
-              Version
+              Release
             </header>
 
             <div
               class="dashboard-card__body"
-              data-bind="version">
+              data-bind="Release">
           </div>
           </section>
 
