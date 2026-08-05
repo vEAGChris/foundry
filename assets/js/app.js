@@ -16,7 +16,6 @@ import {
     showFieldError,
     clearAllErrors
 } from "./components/validationRenderer.js";
-import { getSetCookies } from "undici-types";
 
 const appState = {
       currentView: "dashboard",
@@ -31,6 +30,7 @@ const appState = {
       activeMilestone: null,
 
       releases: [],
+      activeRelease: null,
 
       errors: [],
 
@@ -53,6 +53,7 @@ const DASHBOARD_CARD_BINDINGS = {
 
 const STORAGE_KEYS = {
   activeProject: "activeProjectId",
+  activeRelease: "foundry.activeRelease"
 };
 
 /**
@@ -225,7 +226,7 @@ function initialiseTicketEditor() {
 
           const selectedTicket = getSelectedTicket();
 
-          const editedTicket = buildEditedTicket(SelectedTicket);
+          const editedTicket = buildEditedTicket(selectedTicket);
 
           const updatedTickets = appState.tickets.map(ticket =>
             ticket.id === editedTicket.id 
@@ -555,8 +556,11 @@ function renderCurrentView() {
       case "releases":
 
         app.innerHTML = renderReleasesView(
-            getVisibleReleases()
+            getVisibleReleases(),
+            appState.activeRelease
         );
+
+        initialiseReleaseSelection();
 
         break;
 
@@ -585,8 +589,6 @@ function initialiseProjectSelection() {
 
       localStorage.setItem(STORAGE_KEYS.activeProject, projectId);
       
-      appState.currentView = "dashboard";
-
       renderCurrentView();
 
     });
@@ -610,6 +612,32 @@ function initialiseProjectSelection() {
         completed: 4,
         cancelled: 5
     };
+
+function initialiseReleaseSelection() {
+
+    document.querySelectorAll(".release-card").forEach((card) => {
+
+        card.addEventListener("click", () => {
+
+            const version = card.dataset.releaseVersion;
+
+            appState.activeRelease =
+                appState.releases.find(
+                    release => release.version === version
+                ) ?? null;
+
+            localStorage.setItem(
+                STORAGE_KEYS.activeRelease,
+                version
+            );
+
+            renderCurrentView();
+
+        });
+
+    });
+
+}
 
 function getSortedTickets(tickets, sortBy) {
 

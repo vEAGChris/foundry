@@ -502,6 +502,51 @@ body.application-shell {
     color: var(--text-muted);
 }
 
+.release-card {
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.release-card:hover {
+    border-color: var(--colour-accent);
+}
+
+.release-card--active {
+    border-color: var(--colour-accent);
+    box-shadow: 0 0 0 1px var(--colour-accent);
+}
+
+.release-editor__field {
+
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    margin-bottom: 1rem;
+
+}
+
+.release-editor__field span {
+
+    font-weight: 600;
+
+}
+
+.release-editor__field input,
+.release-editor__field select {
+
+    width: 100%;
+
+}
+
+.release-editor__actions {
+
+    margin-top: var(--space-5);
+
+    display: flex;
+    justify-content: flex-end;
+
+}
+
 /* ==========================================================================
    Components
    ========================================================================== */

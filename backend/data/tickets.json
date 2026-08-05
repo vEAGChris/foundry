@@ -207,7 +207,7 @@
             "Milestone changes are persisted through the backend API."
         ],
         "notes": "",
-        "status": "planned",
+        "status": "completed",
         "priority": "medium",
         "milestone": "M0.7.0"
     },
@@ -225,7 +225,7 @@
             "Release changes are persisted through the backend API."
         ],
         "notes": "",
-        "status": "planned",
+        "status": "in-progress",
         "priority": "medium",
         "milestone": "M0.7.0"
     },
