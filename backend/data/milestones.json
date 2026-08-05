@@ -9,12 +9,18 @@
         "id": "M0.5",
         "projectId": "foundry",
         "title": "Dashboard Components",
-        "status": "in-progress"
+        "status": "completed"
     },
     {
         "id": "M0.6",
         "projectId": "foundry",
         "title": "Live Dashboard",
-        "status": "planned"
+        "status": "completed"
+    },
+    {
+        "id": "M0.7",
+        "projectId": "foundry",
+        "title": "Entity Editors",
+        "status": "in-progress"
     }
 ]

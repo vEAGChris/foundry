@@ -9,34 +9,38 @@ import { renderMilestonesView } from "./views/milestonesView.js";
 import { renderReleasesView } from "./views/releasesView.js";
 import { saveTickets } from "./repositories/ticketRepository.js";
 import { saveProjects } from "./repositories/projectsRepository.js";
+import { saveMilestones } from "./repositories/milestoneRepository.js";
 import { validateTicket } from "./validators/ticketValidation.js";
 import { validateProject } from "./validators/projectValidation.js";
 import {
     showFieldError,
     clearAllErrors
 } from "./components/validationRenderer.js";
+import { getSetCookies } from "undici-types";
 
 const appState = {
-  currentView: "dashboard",
+      currentView: "dashboard",
 
-  projects: [],
-  activeProject: null,
+      projects: [],
+      activeProject: null,
 
-  tickets: [],
-  selectedTicket: null,
+      tickets: [],
+      selectedTicket: null,
 
-  milestones: [],
-  releases: [],
+      milestones: [],
+      activeMilestone: null,
 
-  errors: [],
+      releases: [],
 
-  filters: {
-    search: ""
-  },
+      errors: [],
+
+      filters: {
+          search: ""
+      },
 
   sort: {
-    by: "order",
-  },
+    by: "order"
+  }
 };
 
 // Consider replacing DASHBOARD_CARD_BINDINGS with data-bind attributes on the cards in a future refactor.
@@ -219,7 +223,9 @@ function initialiseTicketEditor() {
 
       try {
 
-          const editedTicket = buildEditedTicket(getSelectedTicket());
+          const selectedTicket = getSelectedTicket();
+
+          const editedTicket = buildEditedTicket(SelectedTicket);
 
           const updatedTickets = appState.tickets.map(ticket =>
             ticket.id === editedTicket.id 
@@ -423,6 +429,68 @@ function initialiseProjectEditor() {
 
 }
 
+function buildEditedMilestone(milestone) {
+
+    const title =
+        document.querySelector(".milestone-editor__title").value;
+
+    const status =
+        document.querySelector(".milestone-editor__status").value;
+
+    return {
+
+        ...milestone,
+
+        title,
+        status
+
+    };
+
+}
+
+function initialiseMilestoneEditor() {
+
+    const saveButton = document.getElementById("save-milestone");
+
+    if (!saveButton) {
+        return;
+    }
+
+    saveButton.addEventListener("click", async () => {
+
+        try {
+
+            const currentMilestone = getCurrentMilestone();
+
+            const editedMilestone =
+                buildEditedMilestone(CurrentMilestone);
+
+            const updatedMilestones =
+                appState.milestones.map(milestone =>
+                    milestone.id === editedMilestone.id
+                        ? editedMilestone
+                        : milestone
+                );
+
+            await saveMilestones(updatedMilestones);
+
+            appState.milestones = updatedMilestones;
+            appState.activeMilestone = editedMilestone;
+
+            renderCurrentView();
+
+            console.log("Milestone saved");
+
+        } catch (error) {
+
+            console.error("Unable to save milestone.", error);
+
+        }
+
+    });
+
+}
+
 function renderCurrentView() {
 
   const app = document.getElementById("app");
@@ -455,7 +523,6 @@ function renderCurrentView() {
       initialiseDeleteTicketButton();
       initialiseTicketSearch();
       initialiseTicketSort();
-      initialiseProjectEditor();
 
       break;
     }
@@ -476,8 +543,12 @@ function renderCurrentView() {
 
       app.innerHTML =
           renderMilestonesView(
-              getVisibleMilestones()
+              getVisibleMilestones(),
+              appState.activeMilestone
           );
+
+      initialiseMilestoneSelection();
+      initialiseMilestoneEditor();
 
       break;
 
@@ -782,8 +853,13 @@ async function loadApplicationData() {
       null;
     
     appState.tickets = tickets;
+    
     appState.milestones = milestones;
-    appState.releases = releases;
+
+    appState.activeMilestone = 
+        getVisibleMilestones()[0] ?? null;
+    
+        appState.releases = releases;
     
     populateCurrentView();
   } catch (error) {
@@ -825,6 +901,37 @@ function populateDashboard() {
   populateProjectBindings(values);
   populateDashboardCards(values);
   populateDevelopmentProgress(model.developmentProgress);
+}
+
+function getCurrentMilestone() {
+
+    return (
+        appState.activeMilestone ??
+        getVisibleMilestones()[0] ??
+        null
+    );
+
+}
+
+function initialiseMilestoneSelection() {
+    console.log("Initialising milestone selection");
+    document
+        .querySelectorAll("[data-milestone-id]")
+        .forEach(card => {
+
+            card.addEventListener("click", () => {
+
+                appState.activeMilestone =
+                    getVisibleMilestones().find(
+                        milestone => milestone.id === card.dataset.milestoneId
+                    );
+
+                renderCurrentView();
+
+            });
+
+        });
+
 }
 
 function getFilteredTickets() {

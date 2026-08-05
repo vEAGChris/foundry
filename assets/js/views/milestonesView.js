@@ -1,21 +1,40 @@
-export function renderMilestonesView(milestones) {
+import { renderMilestoneDetails } from "../components/milestoneDetailsPanel.js";
+
+export function renderMilestonesView(
+    milestones = [],
+    activeMilestone = null
+) {
 
     return `
-        <section class="view">
+        <section class="workspace">
 
-            <h2>Milestones</h2>
+            <div class="workspace-list">
 
-            <div class="milestone-grid">
+                <h2>Milestones</h2>
 
-                ${milestones.map(renderMilestoneCard).join("")}
+                <div class="milestone-grid">
+
+                    ${milestones.map(milestone =>
+                        renderMilestoneCard(
+                            milestone,
+                            activeMilestone
+                        )
+                    ).join("")}
+
+                </div>
 
             </div>
+
+            ${renderMilestoneDetails(activeMilestone)}
 
         </section>
     `;
 }
 
-function renderMilestoneCard(milestone) {
+function renderMilestoneCard(
+    milestone,
+    activeMilestone
+) {
 
     const status = milestone.status;
 
@@ -27,8 +46,15 @@ function renderMilestoneCard(milestone) {
         .replace(/-/g, " ")
         .replace(/\b\w/g, char => char.toUpperCase());
 
+    const active =
+        milestone.id === activeMilestone?.id
+            ? "milestone-card--active"
+            : "";
+
     return `
-        <article class="milestone-card">
+        <article 
+            class="milestone-card ${active}"
+            data-milestone-id="${milestone.id}">
 
             <div class="milestone-card__id">
                 ${milestone.id}
